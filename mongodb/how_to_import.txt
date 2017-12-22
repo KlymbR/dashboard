@@ -1,0 +1,1 @@
+mongoimport --db klymbr --collection climbing_routes --file klymbr.json
