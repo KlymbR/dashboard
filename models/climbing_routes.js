@@ -6,16 +6,46 @@ var ClimbingRoutesSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
-  routes: [{
-    id: {
-      type: String,
-      unique: true,
-      required: true
-    },
-    grips: {
-      type: [String],
-      required: true
-    }
+  route_id: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  route_nb: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  difficulty: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  free: {
+    type: Boolean,
+    unique: true,
+    required: true
+  },
+  physio: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  score_pers: {
+    type: [String],
+    unique: true,
+    required: true
+  },
+  score_all: [{
+      id_user: {
+        type: String,
+        unique: true,
+        required: true
+      },
+      score: {
+        type: String,
+        required: true
+      }
   }]
 });
 

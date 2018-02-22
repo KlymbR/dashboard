@@ -8,12 +8,14 @@
         span.icon-bar
       a.navbar-brand(href='/')
         i.fa.fa-cube
-        | Klymber
+        | Klymbr
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         li(class=(title === 'Home') ? 'active' : undefined)
           a(href='/') Home
       ul.nav.navbar-nav.navbar-right
+        li(class=(title=== 'Activate') ? 'activate': undefined)
+          a(href='/turnOn') Activate Holds
         if !user
           li(class=(title === 'Login') ? 'active' : undefined)
             a(href='/login') Login

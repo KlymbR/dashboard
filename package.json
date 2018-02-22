@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
+    "start": "nodemon app",
     "watch": "nodemon app && mongod"
   },
   "author": "KlymbR <klymbr_2019@labeip.epitech.eu>",
