@@ -4,5 +4,15 @@ block content
   .holds(style="position: absolute;margin: auto;top: 0;right: 0;bottom: 0;left: 0;width: 100px;height: 100px;overflow: hidden;text-align: center;")
     p Activate holds
     label(class="switch")
-      input(type="checkbox", id="chkbx")
+      input(type="checkbox", id="chkbx", onchange="clickHandler();")
       span(class="slider round", style="display: inline-block;")
+  script.
+    function clickHandler(){
+      fetch("http://#{urlapi}")
+        .then(function(data) {
+            document.getElementById("chkbx").checked = true;
+          })
+        .catch(function(error) {
+            document.getElementById("chkbx").checked = false;
+          }); 
+    }
