@@ -21,8 +21,8 @@ router.post('/signup', (req, res, next) => {
     req.flash('errors', errors);
     return res.redirect('/signup');
   }
-
-  const user = new User({
+  const user =  new User({
+    date: req.body.date,
     email: req.body.email,
     username: req.body.email,
     password: req.body.password
@@ -97,14 +97,14 @@ router.post('/update', (req, res, info) => {
 
   user.save(function(err) {
     if (err) {
-      next(err)
+      next(err);
     } else {
       req.flash('success', {
         msg: 'Password changed.'
-      })
+      });
       res.redirect('/');
     }
-  })
-})
+  });
+});
 
 module.exports = router;
