@@ -7,8 +7,11 @@ const passport = require('passport');
 const User = require('../../models/user');
 
 router.post('/signup', (req, res, next) => {
-  console.log('signup!!!');
-  req.assert('email', 'Email is not valid').isEmail();
+  req.assert('firstname', 'Enter your first name.').notEmpty();
+  req.assert('lastname', 'Enter your last name.').notEmpty();
+  req.assert('email', 'Enter your email.').notEmpty();
+  req.assert('email', 'Not a valid email.').isEmail();
+  req.assert('birthdate', 'Enter your birth date.').notEmpty();
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
   req.sanitize('email').normalizeEmail({
@@ -21,13 +24,14 @@ router.post('/signup', (req, res, next) => {
     req.flash('errors', errors);
     return res.redirect('/signup');
   }
-  const user =  new User({
-    date: req.body.date,
+  const user = new User({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    birthdate: req.body.birthdate,
     email: req.body.email,
     username: req.body.email,
     password: req.body.password
   });
-
   User.findOne({
     email: req.body.email
   }, (err, existingUser) => {
@@ -89,18 +93,27 @@ router.post('/signin', (req, res, next) => {
 });
 
 router.post('/update', (req, res, info) => {
-  req.assert('password', 'Password must be at least 4 characters long').len(4);
-  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
   var user = req.user;
-
-  user.password = req.body.password;
-
+  if (req.body.password) {
+    req.assert('password', 'Password must be at least 4 characters long').len(4);
+    req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+    user.password = req.body.password;
+  }
+  req.assert('firstname', 'Enter your first name.').notEmpty();
+  req.assert('lastname', 'Enter your last name.').notEmpty();
+  req.assert('email', 'Enter your email.').notEmpty();
+  req.assert('email', 'Not a valid email.').isEmail();
+  req.assert('birthdate', 'Enter your birth date.').notEmpty();
+  user.firstname = req.body.firstname;
+  user.lastname = req.body.lastname;
+  user.email = req.body.email;
+  user.birthdate = req.body.birthdate;
   user.save(function(err) {
     if (err) {
       next(err);
     } else {
       req.flash('success', {
-        msg: 'Password changed.'
+        msg: 'Profile updated.'
       });
       res.redirect('/');
     }

@@ -6,13 +6,21 @@ block content
   form.form-horizontal(id='signup-form', method='POST', action='/api/user/signup')
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group
-      label.col-sm-3.control-label(for='date') date
+      label.col-sm-3.control-label(for='date') First Name
       .col-sm-7
-        input.form-control(type='date', name='date', id='date', placeholder='date', autofocus, required)
+        input.form-control(type='text', name='firstname', id='firstname', placeholder='First Name', autofocus, required)
+    .form-group
+      label.col-sm-3.control-label(for='date') Last Name
+      .col-sm-7
+        input.form-control(type='text', name='lastname', id='lastname', placeholder='Last Name', required)
+    .form-group
+      label.col-sm-3.control-label(for='date') Birthdate
+      .col-sm-7
+          input.form-control(type='date', name='birthdate', id='birthdate', placeholder='Birthdate', required)
     .form-group
       label.col-sm-3.control-label(for='email') Email
       .col-sm-7
-        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+        input.form-control(type='email', name='email', id='email', placeholder='E-mail', required)
     .form-group
       label.col-sm-3.control-label(for='password') Password
       .col-sm-7
