@@ -16,7 +16,30 @@ block content
     .form-group
       label.col-sm-3.control-label(for='date') Birthdate
       .col-sm-7
+        .nativeDatePicker
           input.form-control(type='date', name='birthdate', id='birthdate', placeholder='Birthdate', required)
+        .fallbackDatePicker
+          span
+            label(for="day")
+            select(id="day", name="day")
+          span
+            label(for="month")
+            select(id="month", namr="month")
+              option(selected) January
+              option February
+              option March
+              option April
+              option May
+              option June
+              option July
+              option August
+              option September
+              option October
+              option November
+              option December
+          span
+            label(for="year")
+            select(id="year", name="year")
     .form-group
       label.col-sm-3.control-label(for='email') Email
       .col-sm-7
@@ -34,3 +57,4 @@ block content
         button.btn.btn-success(type='submit')
           i.fa.fa-user-plus
           | Signup
+  script(src="/js/datepicker.js")
