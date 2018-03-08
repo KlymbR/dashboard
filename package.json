@@ -1,0 +1,27 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "API HTTP Restful JSON for Klymbr",
+  "main": "serverApi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KlymbR/dashboard.git"
+  },
+  "author": "KlymbR <klymbr_2019@labeip.epitech.eu>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KlymbR/dashboard/issues"
+  },
+  "homepage": "https://github.com/KlymbR/dashboard#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.9",
+    "morgan": "^1.9.0"
+  }
+}
