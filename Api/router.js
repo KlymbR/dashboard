@@ -1,6 +1,9 @@
 'use strict';
 
 const express = require('express');
+const jwt = require('jsonwebtoken');
+const app = require('../serverApi');
+
 
 const router = express.Router();
 
@@ -28,6 +31,25 @@ router.options("/*", function (req, res) {
     res.sendStatus(200);
 });
 
-router.use('/user', require('./Routes/user'));
+router.use('/sign', require('./Routes/user').before)
+
+router.use(function (req, res, next) {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+    if (token) {
+        jwt.verify(token, app.get('superSecret'), function (err, decoded) {
+            if (err) {
+                return next({ code: 400, message: 'Failed to authenticate token.' })
+            } else {
+                req.decoded = decoded;
+                next();
+            }
+        });
+    } else {
+        return next({ code: 403, message: 'No token provided.' })
+    }
+});
+
+router.use('/user', require('./Routes/user').after);
 
 module.exports = router;
