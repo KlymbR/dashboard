@@ -7,12 +7,36 @@ block content
       input(type="checkbox", id="chkbx", onchange="clickHandler();")
       span(class="slider round", style="display: inline-block;")
   script.
+    fetch("http://localhost:3000/path?id=1")
+    .then((resp) => resp.json())
+    .then(function(data){
+      document.getElementById("chkbx").checked = !(data.path_free);
+    })
+    .catch(function(err) {
+      alert(err);
+    });
     function clickHandler(){
-      fetch("http://#{urlapi}")
-        .then(function(data) {
-            document.getElementById("chkbx").checked = true;
-          })
-        .catch(function(error) {
+      $.ajax({
+        url: "//#{urlapi}",
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          path_id: 1,
+          path_free: (!(document.getElementById("chkbx").checked))
+        }),
+        success :(function(d) {
+                    fetch("http://localhost:3000/path?id=1")
+                    .then((resp) => resp.json())
+                    .then(function(data){
+                      document.getElementById("chkbx").checked = !(data.path_free);
+                    })
+                    .catch(function(err) {
+                      alert(err);
+                    });
+          }),
+        error: (function(error) {
+            alert(error)
             document.getElementById("chkbx").checked = false;
-          }); 
+          }),
+        });
     }

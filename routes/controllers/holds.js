@@ -9,7 +9,7 @@ router.get('/turnOn', (req, res, next) => {
   }
   res.render('holds/turnOn', {
     title: 'Activate',
-    urlapi: 'localhost:3000' + '/' + 'grips',
+    urlapi: 'localhost:3000' + '/' + 'path/free',
     user: req.user,
   });
 });
