@@ -1,0 +1,17 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form>* {
+  width: 100%;
+}
+
+.summary {
+  margin: 20px;
+}
+
+.summary mat-card-footer {
+  text-align: right;
+  padding: 5px;
+}
