@@ -3,6 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from 'angular5-social-login';
+import {
   MatInputModule,
   MatIconModule,
   MatDatepickerModule,
@@ -10,13 +16,25 @@ import {
   MatStepperModule,
   MatButtonModule,
   MatCardModule,
-  MatListModule
+  MatListModule,
+  MatSelectModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { ForgotComponent } from './forgot/forgot.component';
+import { DialogSigninComponent } from './dialog-signin/dialog-signin.component';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { FooterComponent } from './footer/footer.component';
+import { AuthService } from './auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { SocialComponent } from './social/social.component';
 
 
 @NgModule({
@@ -24,13 +42,20 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     InscriptionComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotComponent,
+    DialogSigninComponent,
+    FooterComponent,
+    SocialComponent
   ],
+  entryComponents: [DialogSigninComponent],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
+    SocialLoginModule,
     MatInputModule,
     MatIconModule,
     MatDatepickerModule,
@@ -38,9 +63,30 @@ import { LoginComponent } from './login/login.component';
     MatStepperModule,
     MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatProgressBarModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: () => {
+        const config = new AuthServiceConfig([{
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('Your-Facebook-app-id')
+        }, {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('Your-Google-Client-Id')
+        }]);
+        return config;
+      }
+    },
+    MediaMatcher,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,13 @@
+<mat-card>
+  <form (submit)="onSubmit()" [formGroup]="loginFormGroup">
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" formControlName="emailCtrl" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="passwordCtrl" required>
+    </mat-form-field>
+    <div>
+      <button type="submit" mat-raised-button>Login</button>
+    </div>
+  </form>
+</mat-card>

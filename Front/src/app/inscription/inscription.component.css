@@ -1,12 +1,3 @@
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-form>* {
-  width: 100%;
-}
-
 .summary {
   margin: 20px;
 }
@@ -14,4 +5,8 @@ form>* {
 .summary mat-card-footer {
   text-align: right;
   padding: 5px;
+}
+
+.step-actions button {
+  margin: 5px;
 }

@@ -17,6 +17,7 @@ export class InscriptionComponent implements OnInit {
 
   ngOnInit() {
     this.personnalFormGroup = this.formBuilder.group({
+      genderCtrl: ['', Validators.required],
       lastNameCtrl: ['', [
         Validators.required,
         Validators.pattern(/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/g)
@@ -25,7 +26,7 @@ export class InscriptionComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/g)
       ]],
-      birthdayCtrl: ['', Validators.required],
+      birthdayCtrl: ['', Validators.required]
     });
     this.authenticationFormGroup = this.formBuilder.group({
       emailCtrl: ['', [
@@ -36,7 +37,7 @@ export class InscriptionComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!"#$%'()*+,-.\/:;=>?@\^_`|~]).{8,16}$/g)
       ]],
-      confirmCtrl: ['', Validators.required],
+      confirmCtrl: ['', Validators.required]
     }, {
         validator: function (absControl: AbstractControl) {
           if (absControl.get('passwordCtrl').value !== absControl.get('confirmCtrl').value) {
@@ -47,18 +48,21 @@ export class InscriptionComponent implements OnInit {
   }
 
   onSubmit() {
-    const lastName = this.personnalFormGroup.controls['lastNameCtrl'].value.toUpperCase();
-    const firstName = this.personnalFormGroup.controls['firstNameCtrl'].value.replace(/\w\S*/g, (txt) => {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-    this.registered.emit({
-      lastName: lastName,
-      firstName: firstName,
-      birthday: this.personnalFormGroup.controls['birthdayCtrl'].value,
-      email: this.authenticationFormGroup.controls['emailCtrl'].value,
-      password: this.authenticationFormGroup.controls['passwordCtrl'].value,
-      created: new Date()
-    });
+    if (this.personnalFormGroup.valid && this.authenticationFormGroup.valid) {
+      const lastName = this.personnalFormGroup.controls['lastNameCtrl'].value.toUpperCase();
+      const firstName = this.personnalFormGroup.controls['firstNameCtrl'].value.replace(/\w\S*/g, (txt) => {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+      this.registered.emit({
+        gender: this.personnalFormGroup.controls['genderCtrl'].value,
+        lastName: lastName,
+        firstName: firstName,
+        birthday: this.personnalFormGroup.controls['birthdayCtrl'].value,
+        email: this.authenticationFormGroup.controls['emailCtrl'].value,
+        password: this.authenticationFormGroup.controls['passwordCtrl'].value,
+        created: new Date()
+      });
+    }
   }
 
 }

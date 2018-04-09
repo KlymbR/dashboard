@@ -1,0 +1,10 @@
+<mat-card>
+  <form (submit)="onSubmit()" [formGroup]="forgotFormGroup">
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" formControlName="emailCtrl" required>
+    </mat-form-field>
+    <div>
+      <button type="submit" mat-raised-button>Help me !</button>
+    </div>
+  </form>
+</mat-card>

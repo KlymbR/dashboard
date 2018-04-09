@@ -4,6 +4,12 @@
       <form [formGroup]="personnalFormGroup">
         <ng-template matStepLabel>Personnal informations</ng-template>
         <mat-form-field>
+          <mat-select placeholder="Gender" formControlName="genderCtrl" required>
+            <mat-option value="Mr">Mr</mat-option>
+            <mat-option value="Mrs">Mrs</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
           <input matInput placeholder="Last Name" formControlName="lastNameCtrl" required>
         </mat-form-field>
         <mat-form-field>
@@ -17,8 +23,8 @@
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
+        <div class="step-actions">
+          <button mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -30,14 +36,15 @@
         </mat-form-field>
         <mat-form-field>
           <input type="password" matInput placeholder="Password" formControlName="passwordCtrl" required>
-          <mat-hint>between 8 and 16 characters included, with lowercase, uppercase, number and special character [!"#$%'()*+,-./:;=>?@\^_`|~] at least</mat-hint>
+          <mat-hint>between 8 and 16 characters included, with lowercase, uppercase, number and special character [!"#$%'()*+,-./:;=>?@\^_`|~]
+            at least</mat-hint>
         </mat-form-field>
         <mat-form-field>
           <input type="password" matInput placeholder="Confirm" formControlName="confirmCtrl" required>
         </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+        <div class="step-actions">
+          <button mat-raised-button matStepperPrevious>Back</button>
+          <button mat-raised-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
@@ -51,13 +58,9 @@
           <mat-list>
             <mat-list-item>
               <p matLine>
-                <span>Last name:</span>
+                <span>Identity:</span>
+                <span>{{personnalFormGroup.controls['genderCtrl'].value}}</span>
                 <span>{{personnalFormGroup.controls['lastNameCtrl'].value}}</span>
-              </p>
-            </mat-list-item>
-            <mat-list-item>
-              <p matLine>
-                <span>First name:</span>
                 <span>{{personnalFormGroup.controls['firstNameCtrl'].value}}</span>
               </p>
             </mat-list-item>
@@ -92,9 +95,9 @@
           <small>* Be careful, check it twice ! Needed for login later :)</small>
         </mat-card-footer>
       </mat-card>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="onSubmit()">Confirm</button>
+      <div class="step-actions">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button (click)="onSubmit()">Confirm</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>
