@@ -10,13 +10,14 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Last Name" name="lname" formControlName="lastNameCtrl" required>
+          <input matInput placeholder="Last Name" name="lname" formControlName="lastNameCtrl" autocomplete="family-name" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="First Name" name="fname" formControlName="firstNameCtrl" required>
+          <input matInput placeholder="First Name" name="fname" formControlName="firstNameCtrl" autocomplete="given-name" required>
         </mat-form-field>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Birthday" name="birth" formControlName="birthdayCtrl" required>
+          <input matInput [matDatepicker]="picker" placeholder="Birthday" name="birth" formControlName="birthdayCtrl" autocomplete="bday"
+            required>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="picker">
             <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
@@ -32,15 +33,16 @@
       <form [formGroup]="authenticationFormGroup">
         <ng-template matStepLabel>Authentication informations</ng-template>
         <mat-form-field>
-          <input type="email" matInput placeholder="Email" name="email" formControlName="emailCtrl" required>
+          <input type="email" matInput placeholder="Email" name="email" formControlName="emailCtrl" autocomplete="email" required>
         </mat-form-field>
         <mat-form-field>
-          <input type="password" matInput placeholder="Password" name="password" formControlName="passwordCtrl" required>
-          <mat-hint>between 8 and 16 characters included, with lowercase, uppercase, number and special character [!"#$%'()*+,-./:;=>?@^_`|~]
-            at least</mat-hint>
+          <input type="password" matInput placeholder="Password" name="password" formControlName="passwordCtrl" autocomplete="new-password"
+            required>
+          <mat-hint>between 8 and 16 included (lowercase, uppercase, number and [!"#$%'()*+,-./:;=>?@^_`|~] at least)</mat-hint>
         </mat-form-field>
         <mat-form-field>
-          <input type="password" matInput placeholder="Confirm" name="password" formControlName="confirmCtrl" required>
+          <input type="password" matInput placeholder="Confirm" name="password" formControlName="confirmCtrl" autocomplete="new-password"
+            required>
         </mat-form-field>
         <div class="step-actions">
           <button mat-raised-button matStepperPrevious>Back</button>
