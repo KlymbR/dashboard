@@ -27,6 +27,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.dialogSignin.open(DialogSigninComponent);
   }
 
+  signout(): void {
+    // TODO
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }

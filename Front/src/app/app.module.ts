@@ -35,6 +35,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SocialComponent } from './social/social.component';
+import { AccountComponent } from './account/account.component';
+import { AppRoutingModule } from './app.routes';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { SocialComponent } from './social/social.component';
     ForgotComponent,
     DialogSigninComponent,
     FooterComponent,
-    SocialComponent
+    SocialComponent,
+    AccountComponent
   ],
   entryComponents: [DialogSigninComponent],
   imports: [
@@ -68,7 +71,8 @@ import { SocialComponent } from './social/social.component';
     MatTabsModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    AppRoutingModule
   ],
   providers: [
     {
