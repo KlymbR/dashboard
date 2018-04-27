@@ -1,5 +1,0 @@
-How to import:
-mongoimport --db klymbr --collection climbing_routes --file climbing_routes.json
-
-insert room routes: 
-db.getCollection('climbing_routes').insert({room_id:'1', routes:[{id:'1', grips:['1', '2', '3']}, {id:'2', grips:['2', '4', '6']}]})

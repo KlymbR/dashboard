@@ -1,1 +1,0 @@
-{"_id":{"$oid":"5a3c0b3fd54cb18ee733cd49"},"room_id":"1","route_id":"1","route_nb":"1","difficulty":"1","free":true,"physio":"data_physio","score_pers":["1","1.1"],"score_all":[{"id_user":"1","score":"1"},{"id_user":"2","score":"1.1"}]}
