@@ -37,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SocialComponent } from './social/social.component';
 import { AccountComponent } from './account/account.component';
 import { AppRoutingModule } from './app.routes';
+import { TwitchPlayerComponent } from './twitch-player/twitch-player.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AppRoutingModule } from './app.routes';
     DialogSigninComponent,
     FooterComponent,
     SocialComponent,
-    AccountComponent
+    AccountComponent,
+    TwitchPlayerComponent
   ],
   entryComponents: [DialogSigninComponent],
   imports: [
