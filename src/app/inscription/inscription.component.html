@@ -24,6 +24,26 @@
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        <mat-form-field>
+          <input type="tel" matInput placeholder="Phone" name="tel" formControlName="phoneCtrl" autocomplete="tel" required>
+        </mat-form-field>
+        <div class="address">
+          <mat-form-field id="number">
+            <input type="number" matInput placeholder="N°" name="number" formControlName="addressNumberCtrl" autocomplete="number" required>
+          </mat-form-field>
+          <mat-form-field id="way">
+            <input matInput placeholder="Way" name="way" formControlName="addressWayCtrl" autocomplete="way" required>
+          </mat-form-field>
+        </div>
+        <div class="address">
+          <mat-form-field id="postalcode">
+            <input matInput placeholder="Postal code" name="postalcode" formControlName="addressPostalCodeCtrl" autocomplete="postalcode"
+              required>
+          </mat-form-field>
+          <mat-form-field id="city">
+            <input matInput placeholder="City" name="city" formControlName="addressCityCtrl" autocomplete="city" required>
+          </mat-form-field>
+        </div>
         <div class="step-actions">
           <button mat-raised-button matStepperNext>Next</button>
         </div>
