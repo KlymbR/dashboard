@@ -21,7 +21,8 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatTableModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -78,6 +79,7 @@ import { UsersComponent } from './users/users.component';
     MatToolbarModule,
     MatSidenavModule,
     MatProgressBarModule,
+    MatTableModule,
     AppRoutingModule
   ],
   providers: [

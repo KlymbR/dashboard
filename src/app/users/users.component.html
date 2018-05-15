@@ -1,3 +1,30 @@
-<p>
-  users works!
-</p>
+<mat-card *ngIf="dataSource">
+  <div class="flex">
+    <div class="header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      </mat-form-field>
+    </div>
+    <mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="firstname">
+        <mat-header-cell *matHeaderCellDef> Firstname </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.firstname }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastname">
+        <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.lastname }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.phone }}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row id="tab-row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</mat-card>
