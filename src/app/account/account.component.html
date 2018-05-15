@@ -8,10 +8,8 @@
         <mat-list>
           <mat-list-item>
             <p matLine>
-              <span>Identity:</span>
-              <span>Gender</span>
-              <span>Lastname</span>
-              <span>Firstname</span>
+              <span>Gender:</span>
+              <span>Mr</span>
             </p>
           </mat-list-item>
           <mat-list-item>
@@ -20,7 +18,16 @@
               <span>01 Jan 1999</span>
             </p>
           </mat-list-item>
-        </mat-list>
+          <mat-list-item>
+              <p matLine>
+                <span>Address:</span>
+                <span>N°</span>
+                <span>street,</span>
+                <span>postal code,</span>
+                <span>city</span>
+              </p>
+            </mat-list-item>
+          </mat-list>
       </mat-card-content>
     </mat-card>
     <form>
@@ -29,6 +36,12 @@
           <mat-card-title>Edit</mat-card-title>
         </mat-card-header>
         <mat-card-content>
+          <mat-form-field>
+            <input matInput placeholder="Last Name" name="lname" autocomplete="family-name" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="First Name" name="fname" autocomplete="given-name" required>
+          </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="Email" name="email" autocomplete="email" required>
           </mat-form-field>
