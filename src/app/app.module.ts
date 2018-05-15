@@ -37,6 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { SocialComponent } from './social/social.component';
 import { AccountComponent } from './account/account.component';
 import { AppRoutingModule } from './app.routes';
+import { WaysComponent } from './ways/ways.component';
+import { GripsComponent } from './grips/grips.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { AppRoutingModule } from './app.routes';
     DialogSigninComponent,
     FooterComponent,
     SocialComponent,
-    AccountComponent
+    AccountComponent,
+    WaysComponent,
+    GripsComponent,
+    UsersComponent
   ],
   entryComponents: [DialogSigninComponent],
   imports: [

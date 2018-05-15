@@ -19,3 +19,7 @@ mat-sidenav {
   background-color: rgb(235, 235, 235);
   min-width: 200px;
 }
+
+mat-divider {
+  margin-top: 10px;
+}

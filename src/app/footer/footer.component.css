@@ -5,3 +5,7 @@ div {
 span {
     margin: 5px;
 }
+
+mat-icon {
+    vertical-align: middle;
+}
