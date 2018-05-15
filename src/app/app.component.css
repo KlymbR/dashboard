@@ -20,6 +20,6 @@ mat-sidenav {
   min-width: 200px;
 }
 
-mat-divider {
-  margin-top: 10px;
+#body {
+  padding: 0 10px 0 10px;
 }

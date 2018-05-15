@@ -22,16 +22,24 @@
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item routerLink='/home'><mat-icon>home</mat-icon> Home</a>
-        <a mat-list-item routerLink='/ways'><mat-icon>dashboard</mat-icon> Ways</a>
-        <a mat-list-item routerLink='/grips'><mat-icon>grain</mat-icon> Grips</a>
-        <a mat-list-item routerLink='/account'><mat-icon>account_box</mat-icon> Account</a>
-        <a mat-list-item routerLink='/users'><mat-icon>supervisor_account</mat-icon> Users</a>
-        <a mat-list-item (click)="signout()"><mat-icon>exit_to_app</mat-icon> Signout</a>
+        <a mat-list-item routerLink='/home'>
+          <mat-icon>home</mat-icon> Home</a>
+        <a mat-list-item routerLink='/ways'>
+          <mat-icon>dashboard</mat-icon> Ways</a>
+        <a mat-list-item routerLink='/grips'>
+          <mat-icon>grain</mat-icon> Grips</a>
+        <a mat-list-item routerLink='/account'>
+          <mat-icon>account_box</mat-icon> Account</a>
+        <a mat-list-item routerLink='/users'>
+          <mat-icon>supervisor_account</mat-icon> Users</a>
+        <a mat-list-item (click)="signout()">
+          <mat-icon>exit_to_app</mat-icon> Signout</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <div id="body">
+        <router-outlet></router-outlet>
+      </div>
       <mat-divider></mat-divider>
       <app-footer></app-footer>
     </mat-sidenav-content>
