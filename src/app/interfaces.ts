@@ -1,4 +1,4 @@
-export interface ILicence {
+export interface ILicense {
     licenseNbr: number;
     clubName: string;
     clubId: number;
@@ -21,8 +21,8 @@ export interface IRegister {
     email: string;
     phone: string;
     gender: number;
-    birthday: string;
-    licences: Array<ILicence>;
+    birthdate: string;
+    licenses: Array<ILicense>;
     address: IAddress;
     isAdmin: boolean;
 }
