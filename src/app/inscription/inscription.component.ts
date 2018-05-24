@@ -65,11 +65,11 @@ export class InscriptionComponent implements OnInit {
         gender: (this.personnalFormGroup.controls['genderCtrl'].value === 'Mr' ? 1 : 0),
         lastName: lastName,
         firstName: firstName,
-        birthday: `${birth.getFullYear()}-${month}-${day}`,
+        birthdate: `${birth.getFullYear()}-${month}-${day}`,
         phone: this.personnalFormGroup.controls['phoneCtrl'].value,
         email: this.authenticationFormGroup.controls['emailCtrl'].value,
         password: this.authenticationFormGroup.controls['passwordCtrl'].value,
-        licences: [],
+        licenses: [],
         address: {
           number: this.personnalFormGroup.controls['addressNumberCtrl'].value,
           street: this.personnalFormGroup.controls['addressWayCtrl'].value,

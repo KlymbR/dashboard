@@ -5,17 +5,17 @@ import { ILogin, IRegister } from './interfaces';
 
 @Injectable()
 export class AuthService {
-  private url = 'http://0.0.0.0/';
+  private url = 'http://api.klymbr.com/';
 
   constructor(private http: HttpClient) { }
 
   postSignin(login: ILogin): Observable<any> {
-    return this.http.post(this.url, login,
+    return this.http.post(this.url + "auth/sign_in", login,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
   postSignup(register: IRegister): Observable<any> {
-    return this.http.post(this.url, register,
+    return this.http.post(this.url + "auth/register/", register,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
