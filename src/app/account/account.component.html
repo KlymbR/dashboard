@@ -1,4 +1,4 @@
-<mat-card id="account">
+<mat-card id="account" *ngIf="user">
   <mat-card-content>
     <mat-card class="block">
       <mat-card-header>
@@ -9,45 +9,58 @@
           <mat-list-item>
             <p matLine>
               <span>Gender:</span>
-              <span>Mr</span>
+              <span *ngIf="user.gender === 1">Mr</span>
+              <span *ngIf="user.gender !== 1">Mrs</span>
             </p>
           </mat-list-item>
           <mat-list-item>
             <p matLine>
               <span>Brithday:</span>
-              <span>01 Jan 1999</span>
+              <span>{{ user.birthdate | date }}</span>
             </p>
           </mat-list-item>
-          <mat-list-item>
-              <p matLine>
-                <span>Address:</span>
-                <span>N°</span>
-                <span>street,</span>
-                <span>postal code,</span>
-                <span>city</span>
-              </p>
-            </mat-list-item>
-          </mat-list>
+        </mat-list>
+        <mat-card class="license" *ngFor="let license of user.licenses">
+          <mat-card-header><h4>{{ license.clubName }}</h4></mat-card-header>
+          <mat-card-content>
+            <span>Number: {{ license.licenseNbr }}</span>
+          </mat-card-content>
+        </mat-card>
       </mat-card-content>
     </mat-card>
-    <form>
+    <form (submit)="editAccount($event)" [formGroup]="accountFormGroup">
       <mat-card>
         <mat-card-header>
           <mat-card-title>Edit</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <mat-form-field>
-            <input matInput placeholder="Last Name" name="lname" autocomplete="family-name" required>
+            <input matInput placeholder="Last Name" name="lname" autocomplete="family-name" formControlName="lastnameCtrl" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="First Name" name="fname" autocomplete="given-name" required>
+            <input matInput placeholder="First Name" name="fname" autocomplete="given-name" formControlName="firstnameCtrl" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Email" name="email" autocomplete="email" required>
+            <input matInput placeholder="Email" name="email" autocomplete="email" formControlName="emailCtrl" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Phone" name="tel" autocomplete="tel" required>
+            <input matInput placeholder="Phone" name="tel" autocomplete="tel" formControlName="phoneCtrl" required>
           </mat-form-field>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Number" name="number-address" autocomplete="address-level1" formControlName="addressNumberCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Street" name="street-address" autocomplete="street-address" formControlName="addressStreetCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Postal Code" name="postal-code" autocomplete="postal-code" formControlName="addressPostalCodeCtrl" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="City" name="city" autocomplete="country" formControlName="addressCityCtrl" required>
+          </mat-form-field>          
         </mat-card-content>
         <mat-card-actions>
           <button type="submit" color="primary" mat-raised-button>Edit</button>

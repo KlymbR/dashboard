@@ -26,3 +26,9 @@ mat-card-footer {
   background-color: crimson;
   color: white;
 }
+
+.license {
+  display: inline-block;
+  width: 100px;
+  margin: 10px;
+}

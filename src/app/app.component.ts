@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material';
 import { DialogSigninComponent } from './dialog-signin/dialog-signin.component';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +15,14 @@ export class AppComponent implements OnInit, OnDestroy {
   public mobileQuery: MediaQueryList;
 
   constructor(public changeDetectorRef: ChangeDetectorRef, public router: Router,
-    public media: MediaMatcher, public dialogSignin: MatDialog) {
+    public media: MediaMatcher, public dialogSignin: MatDialog,
+    private cookieService: CookieService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit() {
-    // LOOK AT THE COOKIE !
   }
 
   openDialogSignin(): void {
@@ -30,11 +31,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   title(): string {
     const raw = this.router.url.split('/').filter(e => e.length > 0).pop();
-    return raw[0].toUpperCase() + raw.substr(1);
+    if (raw.length > 0) {
+      return raw[0].toUpperCase() + raw.substr(1);
+    }
   }
 
   signout(): void {
-    // TODO
+    this.cookieService.deleteAll();
   }
 
   ngOnDestroy(): void {

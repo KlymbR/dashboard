@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -41,6 +42,8 @@ import { AppRoutingModule } from './app.routes';
 import { WaysComponent } from './ways/ways.component';
 import { GripsComponent } from './grips/grips.component';
 import { UsersComponent } from './users/users.component';
+import { UserService } from './user.service';
+import { ClimbService } from './climb.service';
 
 
 @NgModule({
@@ -97,7 +100,10 @@ import { UsersComponent } from './users/users.component';
       }
     },
     MediaMatcher,
-    AuthService
+    CookieService,
+    AuthService,
+    UserService,
+    ClimbService
   ],
   bootstrap: [AppComponent]
 })

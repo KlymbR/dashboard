@@ -1,57 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
-  private data = [
-    {
-      firstname: 'TEST',
-      lastname: 'Test',
-      email: 'test@test.test',
-      phone: '+33678901234'
-    },
-    {
-      firstname: 'TEST',
-      lastname: 'Test',
-      email: 'test@test.test',
-      phone: '+33678901234'
-    },
-    {
-      firstname: 'LOL',
-      lastname: 'Lol',
-      email: 'test@test.test',
-      phone: '+33678901234'
-    },
-    {
-      firstname: 'TEST',
-      lastname: 'Test',
-      email: 'test@test.test',
-      phone: '+33678904321'
-    },
-    {
-      firstname: 'TEST',
-      lastname: 'Test',
-      email: 'test@test.test',
-      phone: '+33678901234'
-    },
-    {
-      firstname: 'TEST',
-      lastname: 'Test',
-      email: 'test@test.test',
-      phone: '+33678901234'
-    },
-  ];
-  public displayedColumns = ['firstname', 'lastname', 'email', 'phone'];
+export class UsersComponent implements OnInit, AfterViewInit {
+  public displayedColumns = ['firstName', 'lastName', 'email', 'phone'];
   public dataSource;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.data);
+  }
+
+  ngAfterViewInit() {
+    this.userService.getAllUsers().subscribe((res) => {
+      if (res.success) {
+        this.dataSource = new MatTableDataSource(res.result);
+      }
+    });
   }
 
   applyFilter(filterValue: string) {

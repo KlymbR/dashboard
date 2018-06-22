@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { IRegister } from '../interfaces';
+import { IRegister, IUser } from '../interfaces';
 
 @Component({
   selector: 'app-inscription',
@@ -11,7 +11,7 @@ export class InscriptionComponent implements OnInit {
   public personnalFormGroup: FormGroup;
   public authenticationFormGroup: FormGroup;
 
-  @Output('registered') registered = new EventEmitter<IRegister>();
+  @Output('registered') registered = new EventEmitter<IRegister & IUser>();
 
   constructor(private formBuilder: FormBuilder) { }
 

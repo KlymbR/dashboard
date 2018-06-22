@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { ILogin, IRegister } from './interfaces';
+import { ILogin, IRegister, IUser } from './interfaces';
 
 @Injectable()
 export class AuthService {
@@ -10,12 +10,12 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   postSignin(login: ILogin): Observable<any> {
-    return this.http.post(this.url + "auth/sign_in", login,
+    return this.http.post(this.url + 'auth/sign_in/', login,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
-  postSignup(register: IRegister): Observable<any> {
-    return this.http.post(this.url + "auth/register/", register,
+  postSignup(register: IRegister & IUser): Observable<any> {
+    return this.http.post(this.url + 'auth/register/', register,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
