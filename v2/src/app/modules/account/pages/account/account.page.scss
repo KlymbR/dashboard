@@ -1,0 +1,12 @@
+@import '../../../../../sass/colors';
+* {
+  color: $primary;
+}
+
+h1 {
+  text-align: center;
+}
+
+mat-divider {
+  margin: 40px 0 !important;
+}

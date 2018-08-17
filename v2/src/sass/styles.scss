@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import './colors';
+* {
+  font-family: 'lato', sans-serif;
+}
+
+.gradient {
+  color: #FFF;
+  font-family: 'lato', sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+  letter-spacing: 10px;
+  /* background: -webkit-linear-gradient(white, #38495a); */
+  background-color: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.flex {
+  display: flex;
+}
+
+.fill {
+  flex: 1 1 auto;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: $primary !important;
+}
+
+form>* {
+  width: 100%;
+}

@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+@import './palette';
+@include mat-core();
+$klymbr-primary: mat-palette($md-primary);
+$klymbr-accent: mat-palette($md-accent, 500, A100, A400);
+$klymbr-warn: mat-palette($md-warn);
+$klymbr-foreground: mat-palette($md-primary);
+$klymbr-theme: mat-light-theme($klymbr-primary, $klymbr-accent, $klymbr-warn);
+@include angular-material-theme($klymbr-theme);

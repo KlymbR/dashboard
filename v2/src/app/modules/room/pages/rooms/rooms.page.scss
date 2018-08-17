@@ -1,0 +1,15 @@
+@import '../../../../../sass/colors';
+* {
+  color: $primary;
+}
+
+h1 {
+  font-weight: 150;
+  font-size: 25px;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}

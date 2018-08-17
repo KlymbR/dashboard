@@ -1,0 +1,36 @@
+<div class="flex">
+  <span class="fill"></span>
+  <span>
+    <i class="fas fa-users fa-7x"></i>
+  </span>
+  <span class="fill"></span>
+</div>
+<h1>Users</h1>
+<div class="search">
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter your keywords">
+    <i class="fas fa-search fa-2x" matSuffix></i>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field>
+</div>
+<mat-table #table [dataSource]="dataSource" matSort matSortActive="lastname" matSortDirection="asc">
+  <ng-container matColumnDef="lastname">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ element.lastname }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="firstname">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Firstname </mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.firstname }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.phone }}</mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
