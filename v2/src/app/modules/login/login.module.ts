@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginRoutingModule } from './login.routes';
 
@@ -13,7 +14,8 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatDividerModule
+  MatDividerModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 import { LoginComponent as LoginPage } from './pages/login/login.page';
@@ -26,6 +28,8 @@ import { SigninComponent } from './components/signin/signin.component';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     LoginRoutingModule,
     MatCardModule,
     MatInputModule,
@@ -34,7 +38,8 @@ import { SigninComponent } from './components/signin/signin.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressBarModule
   ],
   declarations: [
     LoginPage,

@@ -6,12 +6,14 @@
   <span class="fill"></span>
 </div>
 <h1>Recovery</h1>
-<form>
+<form (submit)="onSubmit()" [formGroup]="recoverFormGroup">
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
-    <input type="email" matInput placeholder="Enter your email">
+    <input type="email" matInput placeholder="Enter your email" name="email" formControlName="emailCtrl" autocomplete="email"
+      required>
     <i class="fas fa-envelope fa-2x" matSuffix></i>
-    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="recoverFormGroup.controls['emailCtrl'].hasError('required')">You must enter an email</mat-error>
+    <mat-error *ngIf="recoverFormGroup.controls['emailCtrl'].hasError('email')">Not a valid email</mat-error>
   </mat-form-field>
   <div class="flex">
     <span class="fill"></span>
@@ -21,3 +23,4 @@
     <span class="fill"></span>
   </div>
 </form>
+<mat-progress-bar class="load" mode="indeterminate"></mat-progress-bar>

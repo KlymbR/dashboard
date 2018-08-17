@@ -33,3 +33,14 @@
 form>* {
   width: 100%;
 }
+
+mat-error {
+  color: $warn !important;
+}
+
+.load {
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

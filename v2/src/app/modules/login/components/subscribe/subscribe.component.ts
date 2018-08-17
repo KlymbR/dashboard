@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-subscribe',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./subscribe.component.scss']
 })
 export class SubscribeComponent implements OnInit {
+  public subscribeFormGroup: FormGroup;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.subscribeFormGroup = this.formBuilder.group({
+      emailCtrl: ['', [Validators.required, Validators.email]]
+    });
   }
 
+  public onSubmit() {
+    if (this.subscribeFormGroup.valid) {
+      console.log('subscribe');
+      /*
+      email: this.subscribeFormGroup.controls['emailCtrl'].value,
+      */
+    }
+  }
 }
