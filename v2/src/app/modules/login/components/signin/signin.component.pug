@@ -1,0 +1,51 @@
+mixin flex
+    .flex
+        span.fill
+        span: block
+        span.fill
++flex
+    i.fas.fa-user-circle.fa-7x
+h1 Sign in
+form('(submit)'='onSubmit()' '[formGroup]'='signinFormGroup')
+    mat-form-field(appearance='outline')
+        mat-label Email
+        input(
+            type='email'
+            matInput
+            placeholder='Enter your email'
+            name='email'
+            formControlName='emailCtrl'
+            autocomplete='email'
+            required
+        )
+        i.fas.fa-envelope.fa-2x(matSuffix)
+        mat-error(
+            *ngIf="signinFormGroup.controls['emailCtrl'].hasError('required')"
+        ) You must enter an email
+        mat-error(
+            *ngIf="signinFormGroup.controls['emailCtrl'].hasError('email')"
+        ) Not a valid email
+    mat-form-field(appearance='outline')
+        mat-label Password
+        input(
+            type='password'
+            matInput
+            placeholder='Enter your password'
+            name='password'
+            formControlName='passwordCtrl'
+            autocomplete='current-password'
+            required
+        )
+        i.fas.fa-key.fa-2x(matSuffix)
+        mat-error(
+            *ngIf="signinFormGroup.controls['passwordCtrl'].hasError('required')"
+        ) You must enter a password
+    .remember
+        mat-checkbox(
+            color='primary'
+            '[(ngModel)]'='remember'
+            '[ngModelOptions]'='{standalone: true}'
+        ) Remember me!
+    +flex
+        button(type='submit' mat-stroked-button color='primary') Sign in
+mat-progress-bar.load(mode='indeterminate')

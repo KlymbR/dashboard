@@ -1,0 +1,17 @@
+mixin flex
+    .flex
+        span.fill
+        span: block
+        span.fill
+.title
+    +flex
+        i.fas.fa-allergies.fa-3x
+    h1 N°
+.container-fluid: .row
+    .col-lg-2.col-md-4.col-sm-6: mat-card: mat-card-content
+        +flex
+            i.fas.fa-hand-rock.fa-3x
+        h1 N°
+        p Data:
+        +flex
+            i.fas.fa-plug.fa-2x

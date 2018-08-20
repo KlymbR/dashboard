@@ -3,25 +3,25 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-recovery',
-  templateUrl: './recovery.component.html',
+  templateUrl: './recovery.component.pug',
   styleUrls: ['./recovery.component.scss']
 })
 export class RecoveryComponent implements OnInit {
-  public recoverFormGroup: FormGroup;
+  public recoveryFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.recoverFormGroup = this.formBuilder.group({
+    this.recoveryFormGroup = this.formBuilder.group({
       emailCtrl: ['', [Validators.required, Validators.email]]
     });
   }
 
   public onSubmit() {
-    if (this.recoverFormGroup.valid) {
+    if (this.recoveryFormGroup.valid) {
       console.log('recover');
       /*
-      email: this.recoverFormGroup.controls['emailCtrl'].value,
+      email: this.recoveryFormGroup.controls['emailCtrl'].value,
       */
     }
   }

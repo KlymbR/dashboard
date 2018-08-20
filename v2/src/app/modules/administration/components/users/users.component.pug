@@ -1,0 +1,31 @@
+mixin column(el, head)
+    ng-container(matColumnDef=el)
+        mat-header-cell(*matHeaderCellDef mat-sort-header)= head
+        mat-cell(*matCellDef='let user') {{ user.#{el} }}
+.flex
+    span.fill
+    span: i.fas.fa-users.fa-7x
+    span.fill
+h1 Users
+.search: mat-form-field(appearance='outline')
+    mat-label Search
+    input(
+        matInput
+        '(keyup)'='applyFilter($event.target.value)'
+        placeholder='Enter your keywords'
+    )
+    i.fas.fa-search.fa-2x(matSuffix)
+    mat-hint Hint
+mat-table(
+    #table
+    '[dataSource]'='dataSource'
+    matSort
+    matSortActive='lastname'
+    matSortDirection='asc'
+)
+    +column('lastname', 'Lastname')
+    +column('firstname', 'Firstname')
+    +column('email', 'Email')
+    +column('phone', 'Phone')
+    mat-header-row(*matHeaderRowDef='diplayedColumns')
+    mat-row(*matRowDef='let row; columns: displayedColumns;')

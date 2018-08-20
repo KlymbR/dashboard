@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-room',
-  templateUrl: './room.page.html',
+  templateUrl: './room.page.pug',
   styleUrls: ['./room.page.scss']
 })
 export class RoomComponent implements OnInit {

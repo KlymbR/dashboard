@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
-  templateUrl: './signin.component.html',
+  templateUrl: './signin.component.pug',
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {

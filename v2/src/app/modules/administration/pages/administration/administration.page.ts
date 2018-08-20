@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-administration',
-  templateUrl: './administration.page.html',
+  templateUrl: './administration.page.pug',
   styleUrls: ['./administration.page.scss']
 })
 export class AdministrationComponent implements OnInit {
