@@ -1,5 +1,5 @@
 include ../../../../../pug/flex
-mat-progress-bar.page-load(mode='indeterminate')
+mat-progress-bar.page-load(*ngIf='loading' mode='indeterminate')
 .title
     +flex
         i.fas.fa-allergies.fa-3x

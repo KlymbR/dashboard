@@ -12,7 +12,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatDividerModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { AccountComponent as AccountPage } from './pages/account/account.page';
@@ -30,7 +31,8 @@ import { AccountComponent as AccountPage } from './pages/account/account.page';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDividerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   declarations: [AccountPage]
 })

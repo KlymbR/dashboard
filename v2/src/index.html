@@ -22,6 +22,22 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
+
+  <!-- Load the Twitch embed script -->
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+  <!-- Create a Twitch.Embed object that will render within the "twitch-embed" root element. -->
+  <script type="text/javascript">
+    var options = {
+      width: 853,
+      height: 480,
+      channel: "klymbr",
+      layout: "video"
+    };
+    var player = new Twitch.Embed("twitch-embed", options);
+    player.setVolume(0.5);
+
+  </script>
 </body>
 
 </html>

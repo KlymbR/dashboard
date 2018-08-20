@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import * as moment from 'moment';
-import { LoginService } from '@app/modules/login/login.service';
+import { LoginService } from '@login/login.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-subscribe',
@@ -12,7 +13,11 @@ export class SubscribeComponent implements OnInit {
   public subscribeFormGroup: FormGroup;
   public loading: boolean;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
+  ) {
     this.loading = false;
   }
 
@@ -61,14 +66,12 @@ export class SubscribeComponent implements OnInit {
       const firstName = this.subscribeFormGroup.controls['firstNameCtrl'].value.replace(/\w\S*/g, (txt) => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
-      const birth: Date = this.subscribeFormGroup.controls['birthdayCtrl'].value;
-      const month = (birth.getMonth() >= 10 ? birth.getMonth() : '0' + birth.getMonth());
-      const day = (birth.getDate() >= 10 ? birth.getDate() : '0' + birth.getDate());
+      const birthdate = moment(this.subscribeFormGroup.controls['birthdayCtrl'].value).format('YYYY-MM-DD');
       const register = {
         gender: (this.subscribeFormGroup.controls['genderCtrl'].value === 'Mr' ? 1 : 0),
         lastName: lastName,
         firstName: firstName,
-        birthdate: `${birth.getFullYear()}-${month}-${day}`,
+        birthdate: birthdate,
         phone: this.subscribeFormGroup.controls['phoneCtrl'].value,
         email: this.subscribeFormGroup.controls['emailCtrl'].value,
         password: this.subscribeFormGroup.controls['passwordCtrl'].value,
@@ -81,10 +84,17 @@ export class SubscribeComponent implements OnInit {
         },
         isAdmin: false
       };
+
       this.loginService.postSignup(register).subscribe((response) => {
         console.log('signup:', response);
+        this.snackBar.open('Successful registered!', undefined, {
+          duration: 2000
+        });
         this.loading = false;
-      }, () => {
+      }, (error) => {
+        this.snackBar.open(error.statusText, undefined, {
+          duration: 2000
+        });
         this.loading = false;
       });
     }

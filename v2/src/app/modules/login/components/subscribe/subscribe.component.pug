@@ -32,6 +32,9 @@ form('(submit)'='onSubmit()' '[formGroup]'='subscribeFormGroup')
         mat-error(
             *ngIf="subscribeFormGroup.controls['firstNameCtrl'].hasError('required')"
         ) You must enter your firstname
+        mat-error(
+            *ngIf="subscribeFormGroup.controls['firstNameCtrl'].hasError('pattern')"
+        ) Invalid character(s)
     mat-form-field(appearance='outline')
         mat-label Lastname
         input(
@@ -47,6 +50,9 @@ form('(submit)'='onSubmit()' '[formGroup]'='subscribeFormGroup')
         mat-error(
             *ngIf="subscribeFormGroup.controls['lastNameCtrl'].hasError('required')"
         ) You must enter your lastname
+        mat-error(
+            *ngIf="subscribeFormGroup.controls['lastNameCtrl'].hasError('pattern')"
+        ) Invalid character(s)
     mat-form-field(appearance='outline')
         mat-label Birthdate
         input(matInput
@@ -78,6 +84,9 @@ form('(submit)'='onSubmit()' '[formGroup]'='subscribeFormGroup')
         mat-error(
             *ngIf="subscribeFormGroup.controls['phoneCtrl'].hasError('required')"
         ) You must enter your phone number
+        mat-error(
+            *ngIf="subscribeFormGroup.controls['phoneCtrl'].hasError('pattern')"
+        ) Invalid format: +11 234 567 890
     mat-divider(inset='true')
     mat-form-field(appearance='outline')
         mat-label N°
@@ -174,6 +183,9 @@ form('(submit)'='onSubmit()' '[formGroup]'='subscribeFormGroup')
         mat-error(
             *ngIf="subscribeFormGroup.controls['passwordCtrl'].hasError('required')"
         ) You must enter a password
+        mat-error(
+            *ngIf="subscribeFormGroup.controls['passwordCtrl'].hasError('pattern')"
+        ) between 8 and 16 included (lowercase, uppercase, number and [!"#$%'()*+,-./:;=>?@^_`|~] at least)
     mat-form-field(appearance='outline')
         mat-label Confirm
         input(

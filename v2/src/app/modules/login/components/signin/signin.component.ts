@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginService } from '@app/modules/login/login.service';
+import { LoginService } from '@login/login.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-signin',
@@ -12,7 +13,11 @@ export class SigninComponent implements OnInit {
   public remember: boolean;
   public loading: boolean;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private snackBar: MatSnackBar
+  ) {
     this.loading = false;
   }
 
@@ -34,9 +39,15 @@ export class SigninComponent implements OnInit {
         console.log('signin:', response);
         if (response.success) {
           this.loginService.token = response.token;
+          this.snackBar.open('Successful connected!', undefined, {
+            duration: 2000
+          });
         }
         this.loading = false;
-      }, () => {
+      }, (error) => {
+        this.snackBar.open(error.statusText, undefined, {
+          duration: 2000
+        });
         this.loading = false;
       });
       console.log('remember:', this.remember);

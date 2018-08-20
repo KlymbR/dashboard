@@ -15,7 +15,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatDividerModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { LoginComponent as LoginPage } from './pages/login/login.page';
@@ -39,7 +40,8 @@ import { SigninComponent } from './components/signin/signin.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDividerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   declarations: [
     LoginPage,

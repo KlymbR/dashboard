@@ -7,7 +7,8 @@ import {
   MatCardModule,
   MatInputModule,
   MatTableModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { AdministrationComponent as AdministrationPage } from './pages/administration/administration.page';
@@ -20,7 +21,8 @@ import { UsersComponent } from './components/users/users.component';
     MatCardModule,
     MatInputModule,
     MatTableModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   declarations: [
     AdministrationPage,

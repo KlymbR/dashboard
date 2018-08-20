@@ -16,13 +16,13 @@ mat-table(
     #table
     '[dataSource]'='dataSource'
     matSort
-    matSortActive='lastname'
+    matSortActive='lastName'
     matSortDirection='asc'
 )
-    +column('lastname', 'Lastname')
-    +column('firstname', 'Firstname')
+    +column('lastName', 'Lastname')
+    +column('firstName', 'Firstname')
     +column('email', 'Email')
     +column('phone', 'Phone')
     mat-header-row(*matHeaderRowDef='diplayedColumns')
     mat-row(*matRowDef='let row; columns: displayedColumns;')
-mat-progress-bar.load(mode='indeterminate')
+mat-progress-bar.load(*ngIf='loading' mode='indeterminate')

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-account',
@@ -9,7 +11,10 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 export class AccountComponent implements OnInit {
   public accountFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit() {
     this.accountFormGroup = this.formBuilder.group({
@@ -55,14 +60,12 @@ export class AccountComponent implements OnInit {
       const firstName = this.accountFormGroup.controls['firstNameCtrl'].value.replace(/\w\S*/g, (txt) => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
-      const birth: Date = this.accountFormGroup.controls['birthdayCtrl'].value;
-      const month = (birth.getMonth() >= 10 ? birth.getMonth() : '0' + birth.getMonth());
-      const day = (birth.getDate() >= 10 ? birth.getDate() : '0' + birth.getDate());
+      const birthdate = moment(this.accountFormGroup.controls['birthdayCtrl'].value).format('YYYY-MM-DD');
       const register = {
         gender: (this.accountFormGroup.controls['genderCtrl'].value === 'Mr' ? 1 : 0),
         lastName: lastName,
         firstName: firstName,
-        birthdate: `${birth.getFullYear()}-${month}-${day}`,
+        birthdate: birthdate,
         phone: this.accountFormGroup.controls['phoneCtrl'].value,
         email: this.accountFormGroup.controls['emailCtrl'].value,
         password: this.accountFormGroup.controls['passwordCtrl'].value,
