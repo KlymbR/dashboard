@@ -44,4 +44,4 @@ form('(submit)'='onSubmit()' '[formGroup]'='signinFormGroup')
         ) Remember me!
     +flex
         button(type='submit' mat-stroked-button color='primary') Sign in
-mat-progress-bar.load(mode='indeterminate')
+mat-progress-bar.load(*ngIf='loading' mode='indeterminate')

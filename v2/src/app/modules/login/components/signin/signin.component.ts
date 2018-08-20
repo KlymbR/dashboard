@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '@app/modules/login/login.service';
 
 @Component({
   selector: 'app-signin',
@@ -9,8 +10,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class SigninComponent implements OnInit {
   public signinFormGroup: FormGroup;
   public remember: boolean;
+  public loading: boolean;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
+    this.loading = false;
+  }
 
   ngOnInit() {
     this.signinFormGroup = this.formBuilder.group({
@@ -21,11 +25,21 @@ export class SigninComponent implements OnInit {
 
   public onSubmit() {
     if (this.signinFormGroup.valid) {
-      console.log('login:', this.remember);
-      /*
-      email: this.signinFormGroup.controls['emailCtrl'].value,
-      password: this.signinFormGroup.controls['passwordCtrl'].value
-      */
+      this.loading = true;
+      const log = {
+        email: this.signinFormGroup.controls['emailCtrl'].value,
+        password: this.signinFormGroup.controls['passwordCtrl'].value
+      };
+      this.loginService.postSignin(log).subscribe((response) => {
+        console.log('signin:', response);
+        if (response.success) {
+          this.loginService.token = response.token;
+        }
+        this.loading = false;
+      }, () => {
+        this.loading = false;
+      });
+      console.log('remember:', this.remember);
     }
   }
 }

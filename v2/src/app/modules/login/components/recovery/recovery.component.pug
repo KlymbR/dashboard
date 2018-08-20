@@ -23,4 +23,4 @@ form('(submit)'='onSubmit()' '[formGroup]'='recoveryFormGroup')
         ) Not a valid email
     +flex
         button(type='submit' mat-stroked-button color='primary') Recovery
-mat-progress-bar.load(mode='indeterminate')
+mat-progress-bar.load(*ngIf='loading' mode='indeterminate')

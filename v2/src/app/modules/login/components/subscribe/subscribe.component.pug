@@ -191,4 +191,4 @@ form('(submit)'='onSubmit()' '[formGroup]'='subscribeFormGroup')
         ) You must confirm your password
     +flex
         button(type='submit' mat-stroked-button color='primary') Sign up
-mat-progress-bar.load(mode='indeterminate')
+mat-progress-bar.load(*ngIf='loading' mode='indeterminate')

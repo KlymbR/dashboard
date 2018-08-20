@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import * as moment from 'moment';
+import { LoginService } from '@app/modules/login/login.service';
 
 @Component({
   selector: 'app-subscribe',
@@ -9,8 +10,11 @@ import * as moment from 'moment';
 })
 export class SubscribeComponent implements OnInit {
   public subscribeFormGroup: FormGroup;
+  public loading: boolean;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
+    this.loading = false;
+  }
 
   ngOnInit() {
     this.subscribeFormGroup = this.formBuilder.group({
@@ -52,6 +56,7 @@ export class SubscribeComponent implements OnInit {
 
   public onSubmit() {
     if (this.subscribeFormGroup.valid) {
+      this.loading = true;
       const lastName = this.subscribeFormGroup.controls['lastNameCtrl'].value.toUpperCase();
       const firstName = this.subscribeFormGroup.controls['firstNameCtrl'].value.replace(/\w\S*/g, (txt) => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -76,7 +81,12 @@ export class SubscribeComponent implements OnInit {
         },
         isAdmin: false
       };
-      console.log(register);
+      this.loginService.postSignup(register).subscribe((response) => {
+        console.log('signup:', response);
+        this.loading = false;
+      }, () => {
+        this.loading = false;
+      });
     }
   }
 }

@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app.routes';
 
+import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './app.service';
 
 import {
@@ -26,10 +28,14 @@ import { BackgroundComponent } from './components/background/background.componen
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     MatButtonModule
   ],
-  providers: [AppService],
+  providers: [
+    CookieService,
+    AppService
+  ],
   bootstrap: [AppPage]
 })
 export class AppModule { }
