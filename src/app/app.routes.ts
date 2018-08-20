@@ -4,9 +4,9 @@ import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   { path: 'login', loadChildren: '@login/login.module#LoginModule' },
-  { path: 'account', loadChildren: '@account/account.module#AccountModule' },
-  { path: 'administration', loadChildren: '@administration/administration.module#AdministrationModule' },
-  { path: 'rooms', loadChildren: '@room/room.module#RoomModule' },
+  { path: 'account', loadChildren: '@account/account.module#AccountModule', canActivate: [LoginGuard] },
+  { path: 'administration', loadChildren: '@administration/administration.module#AdministrationModule', canActivate: [LoginGuard] },
+  { path: 'rooms', loadChildren: '@room/room.module#RoomModule', canActivate: [LoginGuard] },
   { path: '', redirectTo: 'rooms', pathMatch: 'full' }
 ];
 

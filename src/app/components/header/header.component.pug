@@ -2,3 +2,14 @@ header.flex
     span.fill
     span.gradient: a(href='/') Klymbr
     span.fill
+.menu-container(*ngIf='connected')
+    button(mat-button '[matMenuTriggerFor]'='menu' color='accent')
+        span.m-right {{ settingsName }}
+        i.fas.fa-cog.fa-2x
+    mat-menu(#menu='matMenu')
+        button.item(mat-menu-item routerLink='/account')
+            i.fas.fa-user.m-right
+            span Account
+        button.item(mat-menu-item routerLink='/login')
+            i.fas.fa-sign-out-alt.m-right
+            span Sign out

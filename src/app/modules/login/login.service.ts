@@ -27,4 +27,9 @@ export class LoginService {
     return this.http.post(this.url, email,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
+
+  getUser(): Observable<any> {
+    return this.http.get(this.url + 'user',
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }) });
+  }
 }

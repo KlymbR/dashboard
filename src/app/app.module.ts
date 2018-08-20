@@ -10,7 +10,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './app.service';
 
 import {
-  MatButtonModule
+  MatButtonModule,
+  MatMenuModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { AppComponent as AppPage } from './pages/app/app.page';
@@ -30,7 +32,9 @@ import { BackgroundComponent } from './components/background/background.componen
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [
     CookieService,

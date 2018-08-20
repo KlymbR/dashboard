@@ -1,0 +1,14 @@
+@import '../../../sass/colors';
+.menu-container {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+
+.m-right {
+  margin-right: 6px;
+}
+
+.item {
+  color: $primary
+}
