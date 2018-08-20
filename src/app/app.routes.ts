@@ -1,22 +1,17 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { WaysComponent } from './ways/ways.component';
-import { GripsComponent } from './grips/grips.component';
-import { AccountComponent } from './account/account.component';
-import { UsersComponent } from './users/users.component';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'ways', component: WaysComponent },
-  { path: 'grips/:id', component: GripsComponent },
-  { path: 'account', component: AccountComponent },
-  { path: 'users', component: UsersComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'login', loadChildren: '@login/login.module#LoginModule' },
+  { path: 'account', loadChildren: '@account/account.module#AccountModule' },
+  { path: 'administration', loadChildren: '@administration/administration.module#AdministrationModule' },
+  { path: 'rooms', loadChildren: '@room/room.module#RoomModule' },
+  { path: '', redirectTo: 'rooms', pathMatch: 'full' }
 ];
 
 @NgModule({
-  exports: [RouterModule],
-  imports: [RouterModule.forRoot(routes)]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
