@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccountRoutingModule } from './account.routes';
 
@@ -10,7 +11,8 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatDividerModule
+  MatDividerModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 import { AccountComponent as AccountPage } from './pages/account/account.page';
@@ -18,6 +20,8 @@ import { AccountComponent as AccountPage } from './pages/account/account.page';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AccountRoutingModule,
     MatCardModule,
     MatInputModule,
@@ -25,7 +29,8 @@ import { AccountComponent as AccountPage } from './pages/account/account.page';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressBarModule
   ],
   declarations: [AccountPage]
 })
