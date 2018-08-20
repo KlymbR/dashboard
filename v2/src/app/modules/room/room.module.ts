@@ -5,7 +5,7 @@ import { RoomRoutingModule } from './room.routes';
 
 
 import {
-  MatCardModule
+  MatCardModule, MatProgressBarModule
 } from '@angular/material';
 
 import { RoomsComponent as RoomsPage } from './pages/rooms/rooms.page';
@@ -16,7 +16,8 @@ import { WayComponent as WayPage } from './pages/way/way.page';
   imports: [
     CommonModule,
     RoomRoutingModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressBarModule
   ],
   declarations: [
     RoomsPage,

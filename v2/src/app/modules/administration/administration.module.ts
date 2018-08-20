@@ -6,7 +6,8 @@ import { AdministrationRoutingModule } from './administration.routes';
 import {
   MatCardModule,
   MatInputModule,
-  MatTableModule
+  MatTableModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 import { AdministrationComponent as AdministrationPage } from './pages/administration/administration.page';
@@ -18,7 +19,8 @@ import { UsersComponent } from './components/users/users.component';
     AdministrationRoutingModule,
     MatCardModule,
     MatInputModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressBarModule
   ],
   declarations: [
     AdministrationPage,
