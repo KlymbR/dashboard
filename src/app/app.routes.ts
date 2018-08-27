@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'account', loadChildren: '@account/account.module#AccountModule', canActivate: [LoginGuard] },
   { path: 'administration', loadChildren: '@administration/administration.module#AdministrationModule', canActivate: [LoginGuard] },
   { path: 'rooms', loadChildren: '@room/room.module#RoomModule', canActivate: [LoginGuard] },
-  { path: '', redirectTo: 'rooms', pathMatch: 'full' }
+  { path: '', loadChildren: '@showcase/showcase.module#ShowcaseModule' }
 ];
 
 @NgModule({
