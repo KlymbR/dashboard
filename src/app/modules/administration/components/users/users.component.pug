@@ -23,6 +23,6 @@ mat-table(
     +column('firstName', 'Firstname')
     +column('email', 'Email')
     +column('phone', 'Phone')
-    mat-header-row(*matHeaderRowDef='diplayedColumns')
+    mat-header-row(*matHeaderRowDef='displayedColumns')
     mat-row(*matRowDef='let row; columns: displayedColumns;')
 mat-progress-bar.load(*ngIf='loading' mode='indeterminate')
