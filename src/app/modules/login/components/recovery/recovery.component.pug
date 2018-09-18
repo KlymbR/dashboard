@@ -1,0 +1,26 @@
+include ../../../../../pug/flex
++flex
+    i.fas.fa-question-circle.fa-7x
+h1 Recovery
+form('(submit)'='onSubmit()' '[formGroup]'='recoveryFormGroup')
+    mat-form-field(appearance='outline')
+        mat-label Email
+        input(
+            type='email'
+            matInput
+            placeholder='Enter your email'
+            name='email'
+            formControlName='emailCtrl'
+            autocomplete='email'
+            required
+        )
+        i.fas.fa-envelope.fa-2x(matSuffix)
+        mat-error(
+            *ngIf="recoveryFormGroup.controls['emailCtrl'].hasError('required')"
+        ) You must enter an email
+        mat-error(
+            *ngIf="recoveryFormGroup.controls['emailCtrl'].hasError('email')"
+        ) Not a valid email
+    +flex
+        button(type='submit' mat-stroked-button color='primary') Recovery
+mat-progress-bar.load(*ngIf='loading' mode='indeterminate')

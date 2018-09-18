@@ -1,0 +1,4 @@
+mixin column(el, head)
+    ng-container(matColumnDef=el)
+        mat-header-cell(*matHeaderCellDef mat-sort-header)= head
+        mat-cell(*matCellDef='let user') {{ user.#{el} }}

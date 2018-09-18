@@ -1,0 +1,12 @@
+include ../../../../../pug/flex
+mat-progress-bar.page-load(*ngIf='loading' mode='indeterminate')
+div(id='twitch-embed')
+.container-fluid: .row
+    .col-lg-2.col-md-4.col-sm-6: a(routerLink='/rooms/room/way'): mat-card: mat-card-content
+        +flex
+            i.fas.fa-allergies.fa-3x
+        h1 N°
+        p Difficulty:
+        +flex
+            i.fas.fa-lock.fa-2x
+            i.fas.fa-unlock.fa-2x

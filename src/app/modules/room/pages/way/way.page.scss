@@ -1,0 +1,15 @@
+@import '../../../../../sass/colors';
+mat-card>* {
+  color: $primary;
+}
+
+.title {
+  color: $accent;
+}
+
+h1 {
+  font-weight: 150;
+  font-size: 25px;
+  letter-spacing: 5px;
+  text-align: center;
+}

@@ -1,0 +1,12 @@
+@import '../../../../../sass/colors';
+* {
+  color: $primary;
+}
+
+h1 {
+  text-align: center;
+}
+
+.search>* {
+  width: 100%;
+}

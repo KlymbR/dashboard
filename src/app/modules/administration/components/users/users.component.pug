@@ -1,0 +1,28 @@
+include ../../../../../pug/flex
+include ../../../../../pug/column
++flex
+    i.fas.fa-users.fa-7x
+h1 Users
+.search: mat-form-field(appearance='outline')
+    mat-label Search
+    input(
+        matInput
+        '(keyup)'='applyFilter($event.target.value)'
+        placeholder='Enter your keywords'
+    )
+    i.fas.fa-search.fa-2x(matSuffix)
+    mat-hint Hint
+mat-table(
+    #table
+    '[dataSource]'='dataSource'
+    matSort
+    matSortActive='lastName'
+    matSortDirection='asc'
+)
+    +column('lastName', 'Lastname')
+    +column('firstName', 'Firstname')
+    +column('email', 'Email')
+    +column('phone', 'Phone')
+    mat-header-row(*matHeaderRowDef='displayedColumns')
+    mat-row(*matRowDef='let row; columns: displayedColumns;')
+mat-progress-bar.load(*ngIf='loading' mode='indeterminate')

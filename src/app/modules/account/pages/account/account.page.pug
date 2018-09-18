@@ -1,0 +1,198 @@
+include ../../../../../pug/flex
+.container: mat-card: mat-card-content
+    +flex
+        i.far.fa-user-circle.fa-7x
+    h1 Account
+    form('(submit)'='onSubmit()' '[formGroup]'='accountFormGroup')
+        mat-form-field(appearance='outline')
+            mat-label Gender
+            mat-select(
+                placeholder='Select your gender'
+                name='gender'
+                formControlName='genderCtrl'
+                required
+            )
+                mat-option(value='Mr') Mr
+                mat-option(value='Mrs') Mrs
+            i.fas.fa-user.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['genderCtrl'].hasError('required')"
+            ) You must enter your gender
+        mat-form-field(appearance='outline')
+            mat-label Firstname
+            input(
+                type='text'
+                matInput
+                placeholder='Enter your firstname'
+                name='fname'
+                formControlName='firstNameCtrl'
+                autocomplete='given-name'
+                required
+            )
+            i.fas.fa-user.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['firstNameCtrl'].hasError('required')"
+            ) You must enter your firstname
+        mat-form-field(appearance='outline')
+            mat-label Lastname
+            input(
+                type='text'
+                matInput
+                placeholder='Enter your lastname'
+                name='lname'
+                formControlName='lastNameCtrl'
+                autocomplete='family-name'
+                required
+            )
+            i.fas.fa-user.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['lastNameCtrl'].hasError('required')"
+            ) You must enter your lastname
+        mat-form-field(appearance='outline')
+            mat-label Birthdate
+            input(matInput
+                '[matDatepicker]'='picker'
+                placeholder='Enter your birthdate'
+                name='birth'
+                formControlName='birthdayCtrl'
+                autocomplete='bday'
+                required
+            )
+            mat-datepicker-toggle(matSuffix '[for]'='picker')
+            mat-datepicker(#picker)
+            mat-error(
+                *ngIf="accountFormGroup.controls['birthdayCtrl'].hasError('required')"
+            ) You must enter your birthdate
+        mat-form-field(appearance='outline')
+            mat-label Phone
+            input(
+                type='tel'
+                matInput
+                placeholder='+11 234 567 890'
+                name='tel'
+                formControlName='phoneCtrl'
+                autocomplete='tel'
+                required
+            )
+            i.fas.fa-phone.fa-2x(matSuffix)
+            mat-hint You must use your country's prefix
+            mat-error(
+                *ngIf="accountFormGroup.controls['phoneCtrl'].hasError('required')"
+            ) You must enter your phone number
+        mat-divider(inset='true')
+        mat-form-field(appearance='outline')
+            mat-label N°
+            input(
+                type='number'
+                matInput
+                placeholder='Enter your way number'
+                name='number'
+                formControlName='addressNumberCtrl'
+                autocomplete='number'
+                required
+            )
+            i.fas.fa-list-ol.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['addressNumberCtrl'].hasError('required')"
+            ) You must enter your way number
+        mat-form-field(appearance='outline')
+            mat-label Way
+            input(
+                type='text'
+                matInput
+                placeholder='Enter your way name'
+                name='way'
+                formControlName='addressWayCtrl'
+                autocomplete='way'
+                required
+            )
+            i.fas.fa-road.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['addressWayCtrl'].hasError('required')"
+            ) You must enter your way
+        mat-form-field(appearance='outline')
+            mat-label Postal code
+            input(
+                type='number'
+                matInput
+                placeholder='Enter your postal code'
+                name='postalcode'
+                formControlName='addressPostalCodeCtrl'
+                autocomplete='postalcode'
+                required
+            )
+            i.fas.fa-university.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['addressPostalCodeCtrl'].hasError('required')"
+            ) You must enter your postal code
+        mat-form-field(appearance='outline')
+            mat-label City
+            input(
+                type='text'
+                matInput
+                placeholder='Enter your city'
+                name='city'
+                formControlName='addressCityCtrl'
+                autocomplete='city'
+                required
+            )
+            i.fas.fa-university.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['addressCityCtrl'].hasError('required')"
+            ) You must enter your city
+        mat-divider(inset='true')
+        mat-form-field(appearance='outline')
+            mat-label Email
+            input(
+                type='email'
+                matInput
+                placeholder='Enter your email'
+                name='email'
+                formControlName='emailCtrl'
+                autocomplete='email'
+                required
+            )
+            i.fas.fa-envelope.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['emailCtrl'].hasError('required')"
+            ) You must enter an email
+            mat-error(
+                *ngIf="accountFormGroup.controls['emailCtrl'].hasError('email')"
+            ) Not a valid email
+        mat-form-field(appearance='outline')
+            mat-label Password
+            input(
+                type='password'
+                matInput
+                placeholder='Enter your password'
+                name='new-password'
+                formControlName='passwordCtrl'
+                autocomplete='new-password'
+                required
+            )
+            i.fas.fa-key.fa-2x(matSuffix)
+            mat-hint between 8 and 16 included (lowercase, uppercase, number and [!"#$%'()*+,-./:;=>?@^_`|~] at least)
+            mat-error(
+                *ngIf="accountFormGroup.controls['passwordCtrl'].hasError('required')"
+            ) You must enter a password
+        mat-form-field(appearance='outline')
+            mat-label Confirm
+            input(
+                type='password'
+                matInput
+                placeholder='Confirm your password'
+                name='new-password'
+                formControlName='confirmCtrl'
+                autocomplete='new-password'
+                required
+            )
+            i.fas.fa-key.fa-2x(matSuffix)
+            mat-error(
+                *ngIf="accountFormGroup.controls['passwordCtrl'].hasError('required')"
+            ) You must confirm your password
+        +flex
+            button(type='submit' mat-stroked-button color='primary') Sign up
+    mat-progress-bar.load(mode='indeterminate')
+    .flex
+        span.fill
+        span: button(mat-raised-button color='warn') Delete
