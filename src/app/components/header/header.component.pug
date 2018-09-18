@@ -13,3 +13,4 @@ header.flex
         button.item(mat-menu-item routerLink='/login')
             i.fas.fa-sign-out-alt.m-right
             span Sign out
+button.login(*ngIf='!connected && notLogin()' mat-stroked-button color='accent' routerLink='/login') Login
