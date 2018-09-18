@@ -17,6 +17,7 @@ import {
 } from '@angular/material';
 
 import { AccountComponent as AccountPage } from './pages/account/account.page';
+import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,10 @@ import { AccountComponent as AccountPage } from './pages/account/account.page';
     MatProgressBarModule,
     MatSnackBarModule
   ],
-  declarations: [AccountPage]
+  declarations: [
+    AccountPage,
+    DialogDeleteComponent
+  ],
+  entryComponents: [DialogDeleteComponent]
 })
 export class AccountModule { }

@@ -5,20 +5,6 @@ include ../../../../../pug/flex
     h1 Account
     form('(submit)'='onSubmit()' '[formGroup]'='accountFormGroup')
         mat-form-field(appearance='outline')
-            mat-label Gender
-            mat-select(
-                placeholder='Select your gender'
-                name='gender'
-                formControlName='genderCtrl'
-                required
-            )
-                mat-option(value='Mr') Mr
-                mat-option(value='Mrs') Mrs
-            i.fas.fa-user.fa-2x(matSuffix)
-            mat-error(
-                *ngIf="accountFormGroup.controls['genderCtrl'].hasError('required')"
-            ) You must enter your gender
-        mat-form-field(appearance='outline')
             mat-label Firstname
             input(
                 type='text'
@@ -48,21 +34,6 @@ include ../../../../../pug/flex
             mat-error(
                 *ngIf="accountFormGroup.controls['lastNameCtrl'].hasError('required')"
             ) You must enter your lastname
-        mat-form-field(appearance='outline')
-            mat-label Birthdate
-            input(matInput
-                '[matDatepicker]'='picker'
-                placeholder='Enter your birthdate'
-                name='birth'
-                formControlName='birthdayCtrl'
-                autocomplete='bday'
-                required
-            )
-            mat-datepicker-toggle(matSuffix '[for]'='picker')
-            mat-datepicker(#picker)
-            mat-error(
-                *ngIf="accountFormGroup.controls['birthdayCtrl'].hasError('required')"
-            ) You must enter your birthdate
         mat-form-field(appearance='outline')
             mat-label Phone
             input(
@@ -159,40 +130,9 @@ include ../../../../../pug/flex
             mat-error(
                 *ngIf="accountFormGroup.controls['emailCtrl'].hasError('email')"
             ) Not a valid email
-        mat-form-field(appearance='outline')
-            mat-label Password
-            input(
-                type='password'
-                matInput
-                placeholder='Enter your password'
-                name='new-password'
-                formControlName='passwordCtrl'
-                autocomplete='new-password'
-                required
-            )
-            i.fas.fa-key.fa-2x(matSuffix)
-            mat-hint between 8 and 16 included (lowercase, uppercase, number and [!"#$%'()*+,-./:;=>?@^_`|~] at least)
-            mat-error(
-                *ngIf="accountFormGroup.controls['passwordCtrl'].hasError('required')"
-            ) You must enter a password
-        mat-form-field(appearance='outline')
-            mat-label Confirm
-            input(
-                type='password'
-                matInput
-                placeholder='Confirm your password'
-                name='new-password'
-                formControlName='confirmCtrl'
-                autocomplete='new-password'
-                required
-            )
-            i.fas.fa-key.fa-2x(matSuffix)
-            mat-error(
-                *ngIf="accountFormGroup.controls['passwordCtrl'].hasError('required')"
-            ) You must confirm your password
         +flex
-            button(type='submit' mat-stroked-button color='primary') Sign up
-    mat-progress-bar.load(mode='indeterminate')
+            button(type='submit' mat-stroked-button color='primary') Edit
+    mat-progress-bar.load(*ngIf='loading' mode='indeterminate')
     .flex
         span.fill
-        span: button(mat-raised-button color='warn') Delete
+        span: button((click)='delete()' mat-raised-button color='warn') Delete
