@@ -55,7 +55,7 @@ export class SigninComponent implements OnInit {
               this.snackBar.open(`Welcome ${name}!`, undefined, {
                 duration: 2000
               });
-              const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+              const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/rooms';
               this.router.navigate([returnUrl]);
             }
             this.loading = false;

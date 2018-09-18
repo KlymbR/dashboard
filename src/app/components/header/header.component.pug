@@ -7,6 +7,9 @@ header.flex
         span.m-right {{ settingsName }}
         i.fas.fa-cog.fa-2x
     mat-menu(#menu='matMenu')
+        button.item(mat-menu-item routerLink='/rooms')
+            i.fas.fa-home.m-right
+            span Rooms
         button.item(mat-menu-item routerLink='/account')
             i.fas.fa-user.m-right
             span Account
