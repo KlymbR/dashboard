@@ -1,6 +1,8 @@
 header.flex
     span.fill
-    span.gradient: a(href='/') Klymbr
+    span.gradient: a(href='/')
+        img.logo(src='/assets/klymbr.png')
+        span Klymbr
     span.fill
 .menu-container(*ngIf='connected')
     button(mat-button '[matMenuTriggerFor]'='menu' color='accent')
