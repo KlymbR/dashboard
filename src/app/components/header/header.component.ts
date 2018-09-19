@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   public get settingsName() { return this.cookieService.get('name'); }
   public get connected() { return this.cookieService.check('token'); }
+  public get admin() { return JSON.parse(localStorage.getItem('rights')); }
 
   constructor(private cookieService: CookieService,
     private router: Router) { }

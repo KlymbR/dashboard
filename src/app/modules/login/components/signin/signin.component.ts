@@ -52,6 +52,7 @@ export class SigninComponent implements OnInit {
             if (res.success) {
               const name = `${res.result.firstName} ${res.result.lastName}`;
               this.cookieService.set('name', name);
+              localStorage.setItem('rights', JSON.stringify(res.result.isAdmin));
               this.snackBar.open(`Welcome ${name}!`, undefined, {
                 duration: 2000
               });

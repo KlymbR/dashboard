@@ -13,6 +13,9 @@ header.flex
         button.item(mat-menu-item routerLink='/account')
             i.fas.fa-user.m-right
             span Account
+        button.item(*ngIf='admin' mat-menu-item routerLink='/administration')
+            i.fab.fa-superpowers.m-right
+            span Administration
         button.item(mat-menu-item routerLink='/login')
             i.fas.fa-sign-out-alt.m-right
             span Sign out
