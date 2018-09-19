@@ -1,12 +1,16 @@
 include ../../../../../pug/flex
 mat-progress-bar.page-load(*ngIf='loading' mode='indeterminate')
+.title
+    +flex
+        i.fas.fa-home.fa-3x
+    h1 {{ room }}
 div(id='twitch-embed')
 .container-fluid: .row
-    .col-lg-2.col-md-4.col-sm-6: a(routerLink='/rooms/room/way'): mat-card: mat-card-content
+    .col-lg-2.col-md-4.col-sm-6(*ngFor='let path of paths'): a([routerLink]='link(path.path_id)'): mat-card: mat-card-content
         +flex
-            i.fas.fa-allergies.fa-3x
-        h1 N°
-        p Difficulty:
+            i.fas.fa-allergies.fa-3x([style.color]='path.color')
+        h1 N° {{ path.path_id }}
+        p Difficulty: {{ path.path_difficulty }}
         +flex
-            i.fas.fa-lock.fa-2x
-            i.fas.fa-unlock.fa-2x
+            i.fas.fa-lock.fa-2x(*ngIf='!path.path_free')
+            i.fas.fa-unlock.fa-2x(*ngIf='path.path_free')

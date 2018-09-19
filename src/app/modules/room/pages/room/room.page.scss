@@ -1,6 +1,11 @@
 @import '../../../../../sass/colors';
-* {
+
+mat-card>* {
   color: $primary;
+}
+
+.title {
+  color: $accent;
 }
 
 h1 {

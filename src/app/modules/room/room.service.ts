@@ -37,10 +37,15 @@ export class RoomService {
   }
 
   freePath(path_id: string, path_free: boolean): Observable<any> {
-    return this.http.get(this.url + 'path',
+    return this.http.post(this.url + 'path/free', { path_id: path_id, path_free: path_free.toString() },
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }) });
+  }
+
+  getStats(path_id: string): Observable<any> {
+    return this.http.get(this.url + 'stat',
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }),
-        params: { path_id: path_id, path_free: path_free.toString() }
+        params: { path_id: path_id }
       });
   }
 }

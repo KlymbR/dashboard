@@ -1,8 +1,8 @@
 mat-progress-bar.page-load(*ngIf='loading' mode='indeterminate')
 .container-fluid: .row
-    .col-lg-2.col-md-4.col-sm-6: a(routerLink='/rooms/room'): mat-card: mat-card-content
+    .col-lg-3.col-md-4.col-sm-6(*ngFor='let room of rooms'): a([routerLink]='link(room.title)'): mat-card: mat-card-content
         .flex
             span.fill
             span: i.fas.fa-home.fa-3x
             span.fill
-        h1 Title
+        h1 {{ room.title }}

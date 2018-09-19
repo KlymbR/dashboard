@@ -6,8 +6,8 @@ import { WayComponent as WayPage } from './pages/way/way.page';
 
 const routes: Routes = [
   { path: '', component: RoomsPage },
-  { path: 'room', component: RoomPage },
-  { path: 'room/way', component: WayPage }
+  { path: ':room', component: RoomPage },
+  { path: ':room/:way', component: WayPage }
 ];
 
 @NgModule({

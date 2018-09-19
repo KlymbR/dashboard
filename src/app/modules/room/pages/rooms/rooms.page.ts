@@ -9,17 +9,20 @@ import { MatSnackBar } from '@angular/material';
 })
 export class RoomsComponent implements AfterViewInit {
   public loading: boolean;
+  public rooms: Array<Object>;
 
   constructor(
     private roomService: RoomService,
     private snackBar: MatSnackBar
   ) {
     this.loading = true;
+    this.rooms = [];
   }
 
   ngAfterViewInit() {
     this.roomService.getAllRooms().subscribe((response) => {
-      console.log(response);
+      if (response.success) { this.rooms = response.result; }
+      console.log(this.rooms);
       this.loading = false;
     }, (error) => {
       this.snackBar.open(error.statusText, undefined, {
@@ -29,4 +32,5 @@ export class RoomsComponent implements AfterViewInit {
     });
   }
 
+  link(id: string) { return '/rooms/' + id; }
 }

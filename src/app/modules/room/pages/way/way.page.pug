@@ -2,13 +2,38 @@ include ../../../../../pug/flex
 mat-progress-bar.page-load(*ngIf='loading' mode='indeterminate')
 .title
     +flex
-        i.fas.fa-allergies.fa-3x
-    h1 N°
-.container-fluid: .row
-    .col-lg-2.col-md-4.col-sm-6: mat-card: mat-card-content
+        i.fas.fa-home.fa-3x
+    h1 {{ room }}
+ng-container(*ngIf='way')
+    .title
         +flex
-            i.fas.fa-hand-rock.fa-3x
-        h1 N°
-        p Data:
+            i.fas.fa-allergies.fa-2x([style.color]='way.color')
+        h2 N° {{ way.path_id }}
+    +flex
+        button((click)='free()' mat-raised-button)
+            i.fas.fa-lock.fa-2x(*ngIf='!way.path_free')
+            i.fas.fa-unlock.fa-2x(*ngIf='way.path_free')
+    .title
         +flex
-            i.fas.fa-plug.fa-2x
+            h3 Grips
+    .container-fluid: .row
+        .col-lg-2.col-md-4.col-sm-6(*ngFor='let grip of way.grips'): mat-card: mat-card-content
+            +flex
+                i.fas.fa-hand-rock.fa-3x(*ngIf='grip.grip_on' '[style.color]'='way.color')
+                i.fas.fa-hand-rock.fa-3x(*ngIf='!grip.grip_on')
+            h1 N° {{ grip.grip_id }}
+            p Data: {{ grip.grip_data }}
+            +flex
+                i.fas.fa-toggle-on.fa-2x(*ngIf='grip.grip_on')
+                i.fas.fa-toggle-off.fa-2x(*ngIf='!grip.grip_on')
+ng-container(*ngIf='stats && stats.length > 0')
+    .title
+        +flex
+            h3 Stats
+    .container-fluid: .row
+        .col-lg-2.col-md-4.col-sm-6(*ngFor='let stat of stats'): mat-card: mat-card-content
+            +flex
+                i.fas.fa-chart-line.fa-3x
+            h1 {{ stat.best_firstName }} {{ stat.best_lastName }}
+            p Best : {{ stat.best_time }}
+            p Average : {{ stat.average_time }}

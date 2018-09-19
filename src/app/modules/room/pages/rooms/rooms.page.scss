@@ -1,4 +1,5 @@
 @import '../../../../../sass/colors';
+
 * {
   color: $primary;
 }
@@ -12,4 +13,9 @@ h1 {
 
 a {
   text-decoration: none;
+}
+
+mat-card {
+  margin-bottom: 10px;
+  height: 200px;
 }

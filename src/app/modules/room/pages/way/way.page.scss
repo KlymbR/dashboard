@@ -1,10 +1,13 @@
 @import '../../../../../sass/colors';
-mat-card>* {
+
+mat-card>*,
+button * {
   color: $primary;
 }
 
 .title {
   color: $accent;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -12,4 +15,15 @@ h1 {
   font-size: 25px;
   letter-spacing: 5px;
   text-align: center;
+}
+
+h2 {
+  font-weight: 75;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
 }
