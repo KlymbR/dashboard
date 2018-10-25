@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app.routes';
 
 import { CookieService } from 'ngx-cookie-service';
 import { AppService } from './app.service';
+import { httpInterceptorProviders } from './providers/http-interceptors/index';
 
 import {
   MatButtonModule,
@@ -38,7 +39,8 @@ import { BackgroundComponent } from './components/background/background.componen
   ],
   providers: [
     CookieService,
-    AppService
+    AppService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppPage]
 })
