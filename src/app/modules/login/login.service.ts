@@ -7,7 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class LoginService {
-  private url = 'http://api.klymbr.com/';
+  private url = 'https://api.klymbr.com/';
   public set token(t: string) { this.cookieService.set('token', t); }
   public get token() { return this.cookieService.get('token'); }
 
