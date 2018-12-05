@@ -69,8 +69,8 @@ export class SubscribeComponent implements OnInit {
       const birthdate = moment(this.subscribeFormGroup.controls['birthdayCtrl'].value).format('YYYY-MM-DD');
       const register = {
         gender: (this.subscribeFormGroup.controls['genderCtrl'].value === 'Mr' ? 1 : 0),
-        lastName: lastName,
-        firstName: firstName,
+        lastname: lastName,
+        firstname: firstName,
         birthdate: birthdate,
         phone: this.subscribeFormGroup.controls['phoneCtrl'].value,
         email: this.subscribeFormGroup.controls['emailCtrl'].value,
@@ -79,10 +79,10 @@ export class SubscribeComponent implements OnInit {
         address: {
           number: this.subscribeFormGroup.controls['addressNumberCtrl'].value,
           street: this.subscribeFormGroup.controls['addressWayCtrl'].value,
-          postalCode: this.subscribeFormGroup.controls['addressPostalCodeCtrl'].value,
+          postalcode: this.subscribeFormGroup.controls['addressPostalCodeCtrl'].value,
           city: this.subscribeFormGroup.controls['addressCityCtrl'].value
         },
-        isAdmin: false
+        tshirt: []
       };
 
       this.loginService.postSignup(register).subscribe((response) => {

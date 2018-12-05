@@ -21,8 +21,7 @@ export class RoomsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.roomService.getAllRooms().subscribe((response) => {
-      if (response.success) { this.rooms = response.result; }
-      console.log(this.rooms);
+      this.rooms = response;
       this.loading = false;
     }, (error) => {
       this.snackBar.open(error.statusText, undefined, {

@@ -7,23 +7,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AccountService {
-  private url = 'https://api.klymbr.com/';
+  private url = 'http://api.klymbr.com/';
   public get token() { return this.cookieService.get('token'); }
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-  getUser(): Observable<any> {
-    return this.http.get(this.url + 'user',
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }) });
+  getUser(_id: string): Observable<any> {
+    return this.http.get(this.url + 'users/' + _id,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 
-  postEdit(edit: Object): Observable<any> {
-    return this.http.post(this.url + 'user/update/', edit,
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+  patchUser(_id: string, user: any): Observable<any> {
+    return this.http.patch(this.url + 'users/' + _id, user,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 
   deleteUser(_id: string): Observable<any> {
-    return this.http.delete(this.url + 'user/delete/' + _id,
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }) });
+    return this.http.delete(this.url + 'users/' + _id,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 }

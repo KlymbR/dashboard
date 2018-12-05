@@ -10,9 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WayComponent implements AfterViewInit {
   public loading: boolean;
-  public room: string;
-  public way: Object;
+  public room_id: string;
+  public room: any;
+  public way: any;
   public stats: Array<Object>;
+  public _id: string;
 
   constructor(
     private roomService: RoomService,
@@ -21,25 +23,19 @@ export class WayComponent implements AfterViewInit {
   ) {
     this.loading = true;
     this.activatedRoute.params.subscribe((params) => {
-      this.room = params.room;
+      this._id = params.way;
+      this.room_id = params.room;
     });
   }
 
   ngAfterViewInit() {
+    this.roomService.getRoom(this.room_id).subscribe((room) => {
+      this.room = room;
+    });
     this.activatedRoute.params.subscribe((params) => {
-      this.roomService.getPath(params.way).subscribe((response) => {
-        if (response.success) { this.way = response.result; }
+      this.roomService.getPath(this._id).subscribe((response) => {
+        this.way = response;
         console.log(this.way);
-        this.roomService.getStats(params.way).subscribe((res) => {
-          if (res && res.success) { this.stats = res.result; }
-          console.log(this.stats);
-          this.loading = false;
-        }, (error) => {
-          this.snackBar.open(error.statusText, undefined, {
-            duration: 2000
-          });
-          this.loading = false;
-        });
       }, (error) => {
         this.snackBar.open(error.statusText, undefined, {
           duration: 2000
@@ -51,18 +47,15 @@ export class WayComponent implements AfterViewInit {
 
   free() {
     this.loading = true;
-    this.roomService.freePath(this.way['path_id'], !this.way['path_free']).subscribe((res) => {
-      if (res.success) {
-        this.roomService.getPath(this.way['path_id']).subscribe((response) => {
-          if (response.success) { this.way = response.result; }
-          this.loading = false;
-        }, (error) => {
-          this.snackBar.open(error.statusText, undefined, {
-            duration: 2000
-          });
-          this.loading = false;
-        });
-      }
+    this.way.free = !this.way.free;
+    this.roomService.patchPath(this.way._id, this.way).subscribe((res) => {
+      this.way = res;
+      this.loading = false;
+    }, (error) => {
+      this.snackBar.open(error.statusText, undefined, {
+        duration: 2000
+      });
+      this.loading = false;
     });
   }
 }

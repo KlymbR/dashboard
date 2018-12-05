@@ -11,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 export class RoomComponent implements AfterViewInit {
   public loading: boolean;
   public paths: Array<Object>;
-  public room: string;
+  public _id: string;
+  public room: any;
 
   constructor(
     private roomService: RoomService,
@@ -20,13 +21,16 @@ export class RoomComponent implements AfterViewInit {
   ) {
     this.loading = true;
     this.activatedRoute.params.subscribe((params) => {
-      this.room = params.room;
+      this._id = params.room;
     });
   }
 
   ngAfterViewInit() {
+    this.roomService.getRoom(this._id).subscribe((room) => {
+      this.room = room;
+    });
     this.roomService.getAllPaths().subscribe((response) => {
-      if (response.success) { this.paths = response.result; }
+      this.paths = response;
       console.log(this.paths);
       this.loading = false;
     }, (error) => {
@@ -37,5 +41,5 @@ export class RoomComponent implements AfterViewInit {
     });
   }
 
-  link(id: string) { return `/rooms/${this.room}/${id}`; }
+  link(id: string) { return `/rooms/${this._id}/${id}`; }
 }

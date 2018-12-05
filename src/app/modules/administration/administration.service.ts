@@ -7,13 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdministrationService {
-  private url = 'https://api.klymbr.com/';
+  private url = 'http://api.klymbr.com/';
   public get token() { return this.cookieService.get('token'); }
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   getAllUsers(): Observable<any> {
-    return this.http.get(this.url + 'user/all',
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }) });
+    return this.http.get(this.url + 'users/',
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 }

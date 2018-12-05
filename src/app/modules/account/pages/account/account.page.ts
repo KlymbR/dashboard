@@ -52,19 +52,23 @@ export class AccountComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.accountService.getUser().subscribe((response) => {
-      if (response.success) {
-        const user = response.result;
-        this.id = user.id;
-        this.accountFormGroup.controls['lastNameCtrl'].setValue(user.lastName);
-        this.accountFormGroup.controls['firstNameCtrl'].setValue(user.firstName);
-        this.accountFormGroup.controls['phoneCtrl'].setValue(user.phone);
-        this.accountFormGroup.controls['addressNumberCtrl'].setValue(user.address.number);
-        this.accountFormGroup.controls['addressWayCtrl'].setValue(user.address.street);
-        this.accountFormGroup.controls['addressPostalCodeCtrl'].setValue(user.address.postalCode);
-        this.accountFormGroup.controls['addressCityCtrl'].setValue(user.address.city);
-        this.accountFormGroup.controls['emailCtrl'].setValue(user.email);
-      }
+    const savedUser = JSON.parse(localStorage.getItem('user'));
+    this.loading = true;
+    this.accountService.getUser(savedUser._id).subscribe((user) => {
+      this.id = user._id;
+      this.accountFormGroup.controls['lastNameCtrl'].setValue(user.lastname);
+      this.accountFormGroup.controls['firstNameCtrl'].setValue(user.firstname);
+      this.accountFormGroup.controls['phoneCtrl'].setValue(user.phone);
+      this.accountFormGroup.controls['addressNumberCtrl'].setValue(user.address.number);
+      this.accountFormGroup.controls['addressWayCtrl'].setValue(user.address.street);
+      this.accountFormGroup.controls['addressPostalCodeCtrl'].setValue(user.address.postalcode);
+      this.accountFormGroup.controls['addressCityCtrl'].setValue(user.address.city);
+      this.accountFormGroup.controls['emailCtrl'].setValue(user.email);
+    }, (error) => {
+      this.snackBar.open(error.statusText, undefined, {
+        duration: 2000
+      });
+      this.loading = false;
     });
   }
 
@@ -75,18 +79,18 @@ export class AccountComponent implements OnInit, AfterViewInit {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
       const edit = {
-        lastName: lastName,
-        firstName: firstName,
+        lastname: lastName,
+        firstname: firstName,
         phone: this.accountFormGroup.controls['phoneCtrl'].value,
         email: this.accountFormGroup.controls['emailCtrl'].value,
         address: {
           number: this.accountFormGroup.controls['addressNumberCtrl'].value,
           street: this.accountFormGroup.controls['addressWayCtrl'].value,
-          postalCode: this.accountFormGroup.controls['addressPostalCodeCtrl'].value,
+          postalcode: this.accountFormGroup.controls['addressPostalCodeCtrl'].value,
           city: this.accountFormGroup.controls['addressCityCtrl'].value
         }
       };
-      this.accountService.postEdit(edit).subscribe((response) => {
+      this.accountService.patchUser(this.id, edit).subscribe((response) => {
         console.log('edit account:', response);
         this.snackBar.open('Successful edited!', undefined, {
           duration: 2000

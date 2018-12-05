@@ -40,7 +40,7 @@ import { BackgroundComponent } from './components/background/background.componen
   providers: [
     CookieService,
     AppService,
-    httpInterceptorProviders
+    // httpInterceptorProviders
   ],
   bootstrap: [AppPage]
 })

@@ -7,45 +7,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RoomService {
-  private url = 'https://api.klymbr.com/';
+  private url = 'http://api.klymbr.com/';
   public get token() { return this.cookieService.get('token'); }
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-  getRoom(title: string): Observable<any> {
-    return this.http.get(this.url + 'climbingRoom',
-      {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }),
-        params: { title: title }
-      });
+  getRoom(_id: string): Observable<any> {
+    return this.http.get(this.url + 'rooms/' + _id,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
   getAllRooms(): Observable<any> {
-    return this.http.get(this.url + 'climbingRoom',
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }) });
+    return this.http.get(this.url + 'rooms',
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 
-  getPath(path_id: string): Observable<any> {
-    return this.http.get(this.url + 'path',
-      {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }),
-        params: { path_id: path_id }
-      });
+  getPath(_id: string): Observable<any> {
+    return this.http.get(this.url + 'paths/' + _id,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
   getAllPaths(): Observable<any> {
-    return this.http.get(this.url + 'path/all',
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }) });
+    return this.http.get(this.url + 'paths',
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 
-  freePath(path_id: string, path_free: boolean): Observable<any> {
-    return this.http.post(this.url + 'path/free', { path_id: path_id, path_free: path_free.toString() },
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }) });
-  }
-
-  getStats(path_id: string): Observable<any> {
-    return this.http.get(this.url + 'stat',
-      {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `JWT ${this.token}` }),
-        params: { path_id: path_id }
-      });
+  patchPath(_id: string, path: any): Observable<any> {
+    return this.http.patch(this.url + 'paths', path,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 }

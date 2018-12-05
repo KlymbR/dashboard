@@ -30,7 +30,6 @@ export class RecoveryComponent implements OnInit {
     if (this.recoveryFormGroup.valid) {
       this.loading = true;
       this.loginService.postRecovery(this.recoveryFormGroup.controls['emailCtrl'].value).subscribe((response) => {
-        console.log('recovery:', response);
         this.snackBar.open('Recovery email sent!', undefined, {
           duration: 2000
         });

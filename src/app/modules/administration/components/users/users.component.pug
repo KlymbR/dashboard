@@ -15,11 +15,11 @@ mat-table(
     #table
     '[dataSource]'='dataSource'
     matSort
-    matSortActive='lastName'
+    matSortActive='lastname'
     matSortDirection='asc'
 )
-    +column('lastName', 'Lastname')
-    +column('firstName', 'Firstname')
+    +column('lastname', 'Lastname')
+    +column('firstname', 'Firstname')
     +column('email', 'Email')
     +column('phone', 'Phone')
     mat-header-row(*matHeaderRowDef='displayedColumns')

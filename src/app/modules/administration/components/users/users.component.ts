@@ -8,7 +8,7 @@ import { MatTableDataSource, MatSort, MatSnackBar } from '@angular/material';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements AfterViewInit {
-  public displayedColumns = ['lastName', 'firstName', 'email', 'phone'];
+  public displayedColumns = ['lastname', 'firstname', 'email', 'phone'];
   public dataSource;
   public loading: boolean;
 
@@ -23,10 +23,8 @@ export class UsersComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.administrationService.getAllUsers().subscribe((res) => {
-      if (res.success) {
-        this.dataSource = new MatTableDataSource(res.result);
-        this.dataSource.sort = this.sort;
-      }
+      this.dataSource = new MatTableDataSource(res);
+      this.dataSource.sort = this.sort;
       this.loading = false;
     }, (error) => {
       this.snackBar.open(error.statusText, undefined, {

@@ -42,31 +42,20 @@ export class SigninComponent implements OnInit {
         password: this.signinFormGroup.controls['passwordCtrl'].value
       };
       this.loginService.postSignin(log).subscribe((response) => {
-        console.log('signin:', response);
-        if (response.success) {
-          this.loginService.token = response.token;
-          this.snackBar.open('Successful connected!', undefined, {
-            duration: 2000
-          });
-          this.loginService.getUser().subscribe((res) => {
-            if (res.success) {
-              const name = `${res.result.firstName} ${res.result.lastName}`;
-              this.cookieService.set('name', name);
-              localStorage.setItem('rights', JSON.stringify(res.result.isAdmin));
-              this.snackBar.open(`Welcome ${name}!`, undefined, {
-                duration: 2000
-              });
-              const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/rooms';
-              this.router.navigate([returnUrl]);
-            }
-            this.loading = false;
-          }, (error) => {
-            this.snackBar.open(error.statusText, undefined, {
-              duration: 2000
-            });
-            this.loading = false;
-          });
-        }
+        this.loginService.token = response.token;
+        localStorage.setItem('user', JSON.stringify(response.user));
+        this.snackBar.open('Successful connected!', undefined, {
+          duration: 2000
+        });
+        const name = `${response.user.firstname} ${response.user.lastname}`;
+        this.cookieService.set('name', name);
+        localStorage.setItem('rights', JSON.stringify(response.user.isAdmin));
+        this.snackBar.open(`Welcome ${name}!`, undefined, {
+          duration: 2000
+        });
+        const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/rooms';
+        this.router.navigate([returnUrl]);
+        this.loading = false;
         this.loading = false;
       }, (error) => {
         this.snackBar.open(error.statusText, undefined, {
@@ -74,7 +63,6 @@ export class SigninComponent implements OnInit {
         });
         this.loading = false;
       });
-      console.log('remember:', this.remember);
     }
   }
 }
