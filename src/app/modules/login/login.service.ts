@@ -24,7 +24,7 @@ export class LoginService {
   }
 
   postRecovery(email: string): Observable<any> {
-    return this.http.post(this.url, email,
+    return this.http.post(this.url + 'users/passrecovery', { email: email },
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 

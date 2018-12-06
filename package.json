@@ -30,6 +30,7 @@
     "moment": "^2.22.2",
     "ng-cli-pug-loader": "^0.1.3",
     "ngx-cookie-service": "^1.0.10",
+    "plotly.js": "^1.42.5",
     "rand-token": "^0.4.0",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"

@@ -1,10 +1,11 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { AccountService } from '@app/modules/account/account.service';
 import { MatDialog } from '@angular/material';
 import { DialogDeleteComponent } from '@app/modules/account/components/dialog-delete/dialog-delete.component';
 import { Router } from '@angular/router';
+import * as Plotly from 'plotly.js';
 
 @Component({
   selector: 'app-account',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./account.page.scss']
 })
 export class AccountComponent implements OnInit, AfterViewInit {
+  @ViewChild('plan') planRef: ElementRef;
   public accountFormGroup: FormGroup;
   public loading: boolean;
   private id: string;
@@ -63,6 +65,7 @@ export class AccountComponent implements OnInit, AfterViewInit {
       this.accountFormGroup.controls['addressPostalCodeCtrl'].setValue(user.address.postalcode);
       this.accountFormGroup.controls['addressCityCtrl'].setValue(user.address.city);
       this.accountFormGroup.controls['emailCtrl'].setValue(user.email);
+      this.displayLayout(user.tshirt);
       this.loading = false;
     }, (error) => {
       this.snackBar.open(error.statusText, undefined, {
@@ -119,5 +122,65 @@ export class AccountComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
+  displayLayout(tshirt: Array<any>) {
+    if (tshirt) {
+      const colors = new Array(tshirt.length).fill('#828282');
+
+      const trace = {
+        x: [],
+        y: [],
+        mode: 'markers',
+        type: 'scatter',
+        text: [],
+        marker: {
+          size: 8,
+          color: colors
+        },
+        hoverinfo: 'none'
+      };
+
+      for (const point of tshirt) {
+        trace.x.push(point.freq);
+        trace.y.push(point.timestamp);
+        trace.text.push(point.freq);
+      }
+
+      const layoutPlot = {
+        autosize: true,
+        hovermode: 'closest',
+        xaxis: {
+          showticklabels: false,
+          showgrid: false,
+          zeroline: false,
+          showline: false,
+          rangemode: 'normal',
+        },
+        yaxis: {
+          showticklabels: false,
+          showgrid: false,
+          zeroline: false,
+          showline: false,
+          rangemode: 'normal',
+          scaleanchor: 'x'
+        },
+        dragmode: 'lasso'
+      };
+      const data = [trace];
+      // { displayModeBar: false } 4th params
+      // https://github.com/plotly/plotly.js/blob/master/src/components/modebar/buttons.js
+      Plotly.react('plan', data, layoutPlot, {
+        scrollZoom: true,
+        modeBarButtonsToRemove: [
+          'toImage',
+          'sendDataToCloud',
+          'hoverClosestCartesian',
+          'hoverCompareCartesian',
+          'toggleSpikelines'
+        ]
+      });
+    }
+  }
 }
+
 
