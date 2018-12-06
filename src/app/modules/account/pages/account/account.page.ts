@@ -125,25 +125,20 @@ export class AccountComponent implements OnInit, AfterViewInit {
 
   displayLayout(tshirt: Array<any>) {
     if (tshirt) {
-      const colors = new Array(tshirt.length).fill('#828282');
-
       const trace = {
         x: [],
         y: [],
-        mode: 'markers',
+        mode: 'lines',
         type: 'scatter',
-        text: [],
-        marker: {
-          size: 8,
-          color: colors
+        lines: {
+          color: '#828282'
         },
         hoverinfo: 'none'
       };
 
       for (const point of tshirt) {
-        trace.x.push(point.freq);
-        trace.y.push(point.timestamp);
-        trace.text.push(point.freq);
+        trace.x.push(point.timestamp);
+        trace.y.push(point.freq);
       }
 
       const layoutPlot = {
