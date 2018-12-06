@@ -3,9 +3,9 @@ include ../../../../../pug/flex
     i.fas.fa-users.fa-7x
 h1 Social
 .container-fluid: .row
-    .col-lg-6.text-center: button.facebook(mat-raised-button)
+    .col-lg-6.text-center: button.facebook((click)='signInWithFB()', mat-raised-button)
         i.fab.fa-facebook.fa-2x
         mat-label SIGN IN WITH FACEBOOK
-    .col-lg-6.text-center: button.google(mat-raised-button)
+    .col-lg-6.text-center: button.google((click)='signInWithGoogle()', mat-raised-button)
         i.fab.fa-google-plus.fa-2x
         mat-label SIGN IN WITH GOOGLE

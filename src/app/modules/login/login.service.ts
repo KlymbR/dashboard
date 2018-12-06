@@ -7,7 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class LoginService {
-  private url = 'http://api.klymbr.com/';
+  private url = 'https://api.klymbr.com/';
   public set token(t: string) { this.cookieService.set('token', t); }
   public get token() { return this.cookieService.get('token'); }
 
@@ -25,6 +25,11 @@ export class LoginService {
 
   postRecovery(email: string): Observable<any> {
     return this.http.post(this.url, email,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+  }
+
+  getRights(email: string): Observable<any> {
+    return this.http.get(this.url + 'rights/' + email,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 }

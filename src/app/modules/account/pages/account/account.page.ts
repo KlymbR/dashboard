@@ -23,7 +23,7 @@ export class AccountComponent implements OnInit, AfterViewInit {
     private dialogDelete: MatDialog,
     private router: Router
   ) {
-    this.loading = false;
+    this.loading = true;
   }
 
   ngOnInit() {
@@ -53,7 +53,6 @@ export class AccountComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const savedUser = JSON.parse(localStorage.getItem('user'));
-    this.loading = true;
     this.accountService.getUser(savedUser._id).subscribe((user) => {
       this.id = user._id;
       this.accountFormGroup.controls['lastNameCtrl'].setValue(user.lastname);
@@ -64,6 +63,7 @@ export class AccountComponent implements OnInit, AfterViewInit {
       this.accountFormGroup.controls['addressPostalCodeCtrl'].setValue(user.address.postalcode);
       this.accountFormGroup.controls['addressCityCtrl'].setValue(user.address.city);
       this.accountFormGroup.controls['emailCtrl'].setValue(user.email);
+      this.loading = false;
     }, (error) => {
       this.snackBar.open(error.statusText, undefined, {
         duration: 2000

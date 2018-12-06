@@ -43,13 +43,20 @@ export class SigninComponent implements OnInit {
       };
       this.loginService.postSignin(log).subscribe((response) => {
         this.loginService.token = response.token;
+        this.loginService.getRights(log.email).subscribe((rights) => {
+          localStorage.setItem('rights', JSON.stringify(false));
+          if (rights.administration !== '---') {
+            localStorage.setItem('rights', JSON.stringify(true));
+          }
+        }, (error) => {
+          localStorage.setItem('rights', JSON.stringify(false));
+        });
         localStorage.setItem('user', JSON.stringify(response.user));
         this.snackBar.open('Successful connected!', undefined, {
           duration: 2000
         });
         const name = `${response.user.firstname} ${response.user.lastname}`;
         this.cookieService.set('name', name);
-        localStorage.setItem('rights', JSON.stringify(response.user.isAdmin));
         this.snackBar.open(`Welcome ${name}!`, undefined, {
           duration: 2000
         });

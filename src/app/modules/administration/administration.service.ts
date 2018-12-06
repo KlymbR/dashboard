@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdministrationService {
-  private url = 'http://api.klymbr.com/';
+  private url = 'https://api.klymbr.com/';
   public get token() { return this.cookieService.get('token'); }
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }

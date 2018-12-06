@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RoomService {
-  private url = 'http://api.klymbr.com/';
+  private url = 'https://api.klymbr.com/';
   public get token() { return this.cookieService.get('token'); }
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
@@ -29,9 +29,12 @@ export class RoomService {
     return this.http.get(this.url + 'paths',
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
-
+  postPath(path: any): Observable<any> {
+    return this.http.post(this.url + 'paths', path,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
+  }
   patchPath(_id: string, path: any): Observable<any> {
-    return this.http.patch(this.url + 'paths', path,
+    return this.http.patch(this.url + 'paths/' + _id, path,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 }

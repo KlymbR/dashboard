@@ -1,0 +1,927 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "KlymbR Application Programming Interface",
+        "version": "2.0.0"
+    },
+    "host": "api.klymbr.com",
+    "basePath": "/v2",
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "User",
+            "description": "Operations about user"
+        }
+    ],
+    "paths": {
+        "/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all users",
+                "description": "Give an array with personnal users informations",
+                "operationId": "getAllUsers",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Post a new user",
+                "description": "Create a new user",
+                "operationId": "postUser",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "User",
+                        "in": "body",
+                        "description": "Personnal informations of new user",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/UserResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/:id": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get an user",
+                "description": "Give personnal informations of an user",
+                "operationId": "getUser",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserResponse"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Patch an user",
+                "description": "Update personnal informations of an user",
+                "operationId": "patchUser",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "User",
+                        "in": "body",
+                        "description": "Personnal informations of new user",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/UserResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete an user",
+                "description": "Erase permanently personnal informations of an user",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/paths": {
+            "get": {
+                "tags": [
+                    "Path"
+                ],
+                "summary": "Get all paths",
+                "description": "Give an array with paths informations",
+                "operationId": "getAllPaths",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PathResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Path"
+                ],
+                "summary": "Post a new path",
+                "description": "Create a new path",
+                "operationId": "postPath",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Path",
+                        "in": "body",
+                        "description": "Informations of new path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Path"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/PathResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/paths/:id": {
+            "get": {
+                "tags": [
+                    "Path"
+                ],
+                "summary": "Get a path",
+                "description": "Give informations of a path",
+                "operationId": "getPath",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Path identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PathResponse"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Path"
+                ],
+                "summary": "Patch a path",
+                "description": "Update informations of a path",
+                "operationId": "patchPath",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Path identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Path",
+                        "in": "body",
+                        "description": "Informations of new path",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Path"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PathResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Path"
+                ],
+                "summary": "Delete a path",
+                "description": "Erase permanently personnal informations of a path",
+                "operationId": "deletePath",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Path identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/rooms": {
+            "get": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Get all rooms",
+                "description": "Give an array with rooms informations",
+                "operationId": "getAllRooms",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RoomResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Post a new room",
+                "description": "Create a new room",
+                "operationId": "postRoom",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Room",
+                        "in": "body",
+                        "description": "Informations of new room",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Room"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/RoomResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/rooms/:id": {
+            "get": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Get a room",
+                "description": "Give informations of a room",
+                "operationId": "getRoom",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Room identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RoomResponse"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Patch a room",
+                "description": "Update informations of a room",
+                "operationId": "patchRoom",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Room identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Room",
+                        "in": "body",
+                        "description": "Informations of new room",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Room"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/RoomResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Room"
+                ],
+                "summary": "Delete a room",
+                "description": "Erase permanently personnal informations of a room",
+                "operationId": "deleteRoom",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "bearer [token]",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Room identifier (_id)",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "number"
+                },
+                "birthdate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "object",
+                    "properties": {
+                        "number": {
+                            "type": "number"
+                        },
+                        "street": {
+                            "type": "string"
+                        },
+                        "postalcode": {
+                            "type": "number"
+                        },
+                        "city": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "licenses": {
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "number": {
+                                "type": "number"
+                            },
+                            "fed": {
+                                "type": "number"
+                            },
+                            "end": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "status": {
+                                "type": "number"
+                            },
+                            "club": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tshirt": {
+                    "type": "object",
+                    "properties": {
+                        "freq": {
+                            "type": "number"
+                        },
+                        "altitude": {
+                            "type": "number"
+                        },
+                        "timestamp": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "isAdmin": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "UserResponse": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "number"
+                },
+                "birthdate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "object",
+                    "properties": {
+                        "number": {
+                            "type": "number"
+                        },
+                        "street": {
+                            "type": "string"
+                        },
+                        "postalcode": {
+                            "type": "number"
+                        },
+                        "city": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "licenses": {
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "id": {
+                                "type": "number"
+                            },
+                            "number": {
+                                "type": "number"
+                            },
+                            "end": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "status": {
+                                "type": "number"
+                            },
+                            "club": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tshirt": {
+                    "type": "object",
+                    "properties": {
+                        "freq": {
+                            "type": "number"
+                        },
+                        "altitude": {
+                            "type": "number"
+                        },
+                        "timestamp": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "isAdmin": {
+                    "type": "boolean"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Path": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "free": {
+                    "type": "boolean"
+                },
+                "difficulty": {
+                    "type": "string"
+                },
+                "grips": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "number"
+                            },
+                            "data": {
+                                "type": "number"
+                            },
+                            "on": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "average": {
+                    "type": "number"
+                },
+                "best": {
+                    "type": "object",
+                    "properties": {
+                        "time": {
+                            "type": "number"
+                        },
+                        "firstname": {
+                            "type": "string"
+                        },
+                        "lastname": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "PathResponse": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "free": {
+                    "type": "boolean"
+                },
+                "difficulty": {
+                    "type": "string"
+                },
+                "grips": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "number"
+                            },
+                            "data": {
+                                "type": "number"
+                            },
+                            "on": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "average": {
+                    "type": "number"
+                },
+                "best": {
+                    "type": "object",
+                    "properties": {
+                        "time": {
+                            "type": "number"
+                        },
+                        "firstname": {
+                            "type": "string"
+                        },
+                        "lastname": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "Room": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                }
+            }
+        },
+        "RoomResponse": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": null
+            }
+        },
+        "ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                },
+                "error_description": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

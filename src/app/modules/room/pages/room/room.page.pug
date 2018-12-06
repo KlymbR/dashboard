@@ -3,7 +3,7 @@ mat-progress-bar.page-load(*ngIf='loading' mode='indeterminate')
 .title
     +flex
         i.fas.fa-home.fa-3x
-    h1 {{ room.title }}
+    h1(*ngIf='room') {{ room.title }}
 div(id='twitch-embed')
 .container-fluid: .row
     .col-lg-2.col-md-4.col-sm-6(*ngFor='let path of paths'): a([routerLink]='link(path._id)'): mat-card: mat-card-content
@@ -14,3 +14,38 @@ div(id='twitch-embed')
         +flex
             i.fas.fa-lock.fa-2x(*ngIf='!path.free')
             i.fas.fa-unlock.fa-2x(*ngIf='path.free')
+    .col-lg-2.col-md-4.col-sm-6(*ngIf='admin'): mat-card: mat-card-content
+        +flex
+            i.fas.fa-allergies.fa-3x
+        h1 New
+        form('(submit)'='onSubmit()' '[formGroup]'='pathFormGroup')
+            mat-form-field(appearance='outline')
+                mat-label Difficulty
+                input(
+                    type='text'
+                    matInput
+                    placeholder=''
+                    name='difficulty'
+                    formControlName='difficultyCtrl'
+                    required
+                )
+                i.fas.fa-key.fa-2x(matSuffix)
+                mat-error(
+                    *ngIf="pathFormGroup.controls['difficultyCtrl'].hasError('required')"
+                ) You must enter a difficulty level
+            mat-form-field(appearance='outline')
+                mat-label Color
+                input(
+                    type='text'
+                    matInput
+                    placeholder=''
+                    name='color'
+                    formControlName='colorCtrl'
+                    required
+                )
+                i.fas.fa-key.fa-2x(matSuffix)
+                mat-error(
+                    *ngIf="pathFormGroup.controls['colorCtrl'].hasError('required')"
+                ) You must enter a color
+            +flex
+            button(type='submit' mat-stroked-button color='primary') Create

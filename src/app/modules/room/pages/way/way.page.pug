@@ -3,7 +3,7 @@ mat-progress-bar.page-load(*ngIf='loading' mode='indeterminate')
 .title
     +flex
         i.fas.fa-home.fa-3x
-    h1 {{ room.title }}
+    h1(*ngIf='room') {{ room.title }}
 ng-container(*ngIf='way')
     .title
         +flex
@@ -26,7 +26,28 @@ ng-container(*ngIf='way')
             +flex
                 i.fas.fa-toggle-on.fa-2x(*ngIf='grip.grip_on')
                 i.fas.fa-toggle-off.fa-2x(*ngIf='!grip.grip_on')
-ng-container
+        .col-lg-2.col-md-4.col-sm-6(*ngIf="admin"): mat-card: mat-card-content
+            +flex
+                i.fas.fa-hand-rock.fa-3x
+            h1 New
+            form('(submit)'='onSubmit()' '[formGroup]'='wayFormGroup')
+                mat-form-field(appearance='outline')
+                    mat-label Data
+                    input(
+                        type='number'
+                        matInput
+                        placeholder=''
+                        name='data'
+                        formControlName='dataCtrl'
+                        required
+                    )
+                    i.fas.fa-key.fa-2x(matSuffix)
+                    mat-error(
+                        *ngIf="wayFormGroup.controls['dataCtrl'].hasError('required')"
+                    ) You must enter data
+                +flex
+                button(type='submit' mat-stroked-button color='primary') Create
+ng-container(*ngIf='way')
     .title
         +flex
             h3 Stats

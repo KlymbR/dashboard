@@ -1,0 +1,14 @@
+{
+    "/users": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/paths": {
+        "target": "http://localhost:8080",
+        "secure": false
+    },
+    "/rooms": {
+        "target": "http://localhost:8080",
+        "secure": false
+    }
+}
