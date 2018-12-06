@@ -10,7 +10,7 @@ div(id='twitch-embed')
         +flex
             i.fas.fa-allergies.fa-3x([style.color]='path.color')
         h1 N° {{ path._id }}
-        p Difficulty: {{ path.difficulty }}
+        p Difficulty: {{ path.difficulty }} 
         +flex
             i.fas.fa-lock.fa-2x(*ngIf='!path.free')
             i.fas.fa-unlock.fa-2x(*ngIf='path.free')
