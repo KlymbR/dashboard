@@ -135,7 +135,7 @@ export class AccountComponent implements OnInit, AfterViewInit {
         },
         hoverinfo: 'none'
       };
-
+      tshirt.sort((a, b) => a.timestamp < b.timestamp ? -1 : a.timestamp > b.timestamp ? 1 : 0);
       for (const point of tshirt) {
         trace.x.push(point.timestamp);
         trace.y.push(point.freq);
@@ -145,17 +145,17 @@ export class AccountComponent implements OnInit, AfterViewInit {
         autosize: true,
         hovermode: 'closest',
         xaxis: {
-          showticklabels: false,
+          showticklabels: true,
           showgrid: false,
           zeroline: false,
-          showline: false,
+          showline: true,
           rangemode: 'normal',
         },
         yaxis: {
-          showticklabels: false,
-          showgrid: false,
+          showticklabels: true,
+          showgrid: true,
           zeroline: false,
-          showline: false,
+          showline: true,
           rangemode: 'normal',
           scaleanchor: 'x'
         },
