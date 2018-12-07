@@ -28,8 +28,8 @@ export class LoginService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 
-  getRights(email: string): Observable<any> {
+  getRights(email: string, token: string): Observable<any> {
     return this.http.get(this.url + 'rights/' + email,
-      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token }) });
   }
 }
