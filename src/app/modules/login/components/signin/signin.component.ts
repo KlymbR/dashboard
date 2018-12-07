@@ -43,7 +43,7 @@ export class SigninComponent implements OnInit {
       };
       this.loginService.postSignin(log).subscribe((response) => {
         this.loginService.token = response.token;
-        this.loginService.getRights(log.email, response.token).subscribe((rights) => {
+        this.loginService.getRights(log.email).subscribe((rights) => {
           localStorage.setItem('rights', JSON.stringify(false));
           if (rights.administration !== '---') {
             localStorage.setItem('rights', JSON.stringify(true));
