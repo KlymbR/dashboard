@@ -12,8 +12,8 @@ export class RoomService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-  getRoom(_id: string): Observable<any> {
-    return this.http.get(this.url + 'rooms/' + _id,
+  getRoom(roomid: string): Observable<any> {
+    return this.http.get(this.url + 'rooms/' + roomid,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
   getAllRooms(): Observable<any> {
@@ -21,20 +21,20 @@ export class RoomService {
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 
-  getPath(_id: string): Observable<any> {
-    return this.http.get(this.url + 'paths/' + _id,
+  getPath(roomid: string, pathid: string): Observable<any> {
+    return this.http.get(this.url + 'rooms/' + roomid + '/paths/' + pathid,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
-  getAllPaths(): Observable<any> {
-    return this.http.get(this.url + 'paths',
+  getAllPaths(roomid: string): Observable<any> {
+    return this.http.get(this.url + 'rooms/' + roomid + '/paths',
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
   postPath(path: any): Observable<any> {
     return this.http.post(this.url + 'paths', path,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
-  patchPath(_id: string, path: any): Observable<any> {
-    return this.http.patch(this.url + 'paths/' + _id, path,
+  patchPath(roomid: string, pathid: string, path: any): Observable<any> {
+    return this.http.patch(this.url + 'rooms/' + roomid + '/paths/' + pathid, path,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
 }

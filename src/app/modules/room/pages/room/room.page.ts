@@ -41,7 +41,7 @@ export class RoomComponent implements AfterViewInit, OnInit {
     this.roomService.getRoom(this._id).subscribe((room) => {
       this.room = room;
     });
-    this.roomService.getAllPaths().subscribe((response) => {
+    this.roomService.getAllPaths(this._id).subscribe((response) => {
       this.paths = response;
       console.log(this.paths);
       this.loading = false;
