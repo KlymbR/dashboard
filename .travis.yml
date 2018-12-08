@@ -5,12 +5,16 @@ sudo: true
 dist: trusty
 
 script:
+  - ng test
+
+after_sucess:
   - ng build --configuration=production
+  - tar -czvf dist.tar.gz dist/
 
 deploy:
   provider: releases
   skip_cleanup: true
   api_key: $GITHUB_TOKEN
-  file: "dist/"
+  file: "dist.tar.gz"
   on:
     branch: master
