@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "node"
+sudo: true
+dist: trusty
+
+script:
+  - ng build --configuration=production
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GITHUB_TOKEN
+  file: "dist/"
+  on:
+    branch: master
