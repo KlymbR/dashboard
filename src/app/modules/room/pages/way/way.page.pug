@@ -11,8 +11,8 @@ ng-container(*ngIf='way')
         h2 {{ way.name }}
     +flex
         button((click)='free()' mat-raised-button)
-            i.fas.fa-lock.fa-2x(*ngIf='!way.path_free')
-            i.fas.fa-unlock.fa-2x(*ngIf='way.path_free')
+            i.fas.fa-lock.fa-2x(*ngIf='!way.free')
+            i.fas.fa-unlock.fa-2x(*ngIf='way.free')
     .title
         +flex
             h3 Grips

@@ -20,6 +20,20 @@ div(id='twitch-embed')
         h1 New
         form('(submit)'='onSubmit()' '[formGroup]'='pathFormGroup')
             mat-form-field(appearance='outline')
+                mat-label Name
+                input(
+                    type='text'
+                    matInput
+                    placeholder=''
+                    name='name'
+                    formControlName='nameCtrl'
+                    required
+                )
+                i.fas.fa-key.fa-2x(matSuffix)
+                mat-error(
+                    *ngIf="pathFormGroup.controls['nameCtrl'].hasError('required')"
+                ) You must enter a name
+            mat-form-field(appearance='outline')
                 mat-label Difficulty
                 input(
                     type='text'

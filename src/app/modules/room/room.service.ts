@@ -29,8 +29,8 @@ export class RoomService {
     return this.http.get(this.url + 'rooms/' + roomid + '/paths',
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
-  postPath(path: any): Observable<any> {
-    return this.http.post(this.url + 'paths', path,
+  postPath(roomid: string, path: any): Observable<any> {
+    return this.http.post(this.url + 'rooms/' + roomid + '/paths/', path,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
   patchPath(roomid: string, pathid: string, path: any): Observable<any> {

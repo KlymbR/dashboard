@@ -62,6 +62,7 @@ export class WayComponent implements AfterViewInit, OnInit {
     this.way.free = !this.way.free;
     this.roomService.patchPath(this.room_id, this.way._id, this.way).subscribe((res) => {
       this.way = res;
+      console.log(res);
       this.loading = false;
     }, (error) => {
       this.snackBar.open(error.statusText, undefined, {
