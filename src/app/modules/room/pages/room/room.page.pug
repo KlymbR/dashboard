@@ -9,8 +9,8 @@ div(id='twitch-embed')
     .col-lg-2.col-md-4.col-sm-6(*ngFor='let path of paths'): a([routerLink]='link(path._id)'): mat-card: mat-card-content
         +flex
             i.fas.fa-allergies.fa-3x([style.color]='path.color')
-        h1 N° {{ path._id }}
-        p Difficulty: {{ path.difficulty }} 
+        h1 {{ path.name }}
+        p Difficulty: {{ path.difficulty }}
         +flex
             i.fas.fa-lock.fa-2x(*ngIf='!path.free')
             i.fas.fa-unlock.fa-2x(*ngIf='path.free')
@@ -19,6 +19,20 @@ div(id='twitch-embed')
             i.fas.fa-allergies.fa-3x
         h1 New
         form('(submit)'='onSubmit()' '[formGroup]'='pathFormGroup')
+            mat-form-field(appearance='outline')
+                mat-label Name
+                input(
+                    type='text'
+                    matInput
+                    placeholder=''
+                    name='name'
+                    formControlName='nameCtrl'
+                    required
+                )
+                i.fas.fa-key.fa-2x(matSuffix)
+                mat-error(
+                    *ngIf="pathFormGroup.controls['nameCtrl'].hasError('required')"
+                ) You must enter a name
             mat-form-field(appearance='outline')
                 mat-label Difficulty
                 input(

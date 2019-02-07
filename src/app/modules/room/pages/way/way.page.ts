@@ -44,7 +44,7 @@ export class WayComponent implements AfterViewInit, OnInit {
       this.room = room;
     });
     this.activatedRoute.params.subscribe((params) => {
-      this.roomService.getPath(this._id).subscribe((response) => {
+      this.roomService.getPath(this.room_id, this._id).subscribe((response) => {
         this.way = response;
         console.log(this.way);
         this.loading = false;
@@ -60,8 +60,9 @@ export class WayComponent implements AfterViewInit, OnInit {
   free() {
     this.loading = true;
     this.way.free = !this.way.free;
-    this.roomService.patchPath(this.way._id, this.way).subscribe((res) => {
+    this.roomService.patchPath(this.room_id, this.way._id, this.way).subscribe((res) => {
       this.way = res;
+      console.log(res);
       this.loading = false;
     }, (error) => {
       this.snackBar.open(error.statusText, undefined, {
@@ -80,7 +81,7 @@ export class WayComponent implements AfterViewInit, OnInit {
         on: false
       });
       console.log(this.way);
-      this.roomService.patchPath(this.way._id, this.way).subscribe((response) => {
+      this.roomService.patchPath(this.room_id, this.way._id, this.way).subscribe((response) => {
         this.way = response;
         this.snackBar.open('Path created!', undefined, {
           duration: 2000

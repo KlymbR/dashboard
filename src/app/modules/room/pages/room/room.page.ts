@@ -33,7 +33,8 @@ export class RoomComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.pathFormGroup = this.formBuilder.group({
       difficultyCtrl: ['', Validators.required],
-      colorCtrl: ['', Validators.required]
+      colorCtrl: ['', Validators.required],
+      nameCtrl: ['', Validators.required]
     });
   }
 
@@ -41,7 +42,7 @@ export class RoomComponent implements AfterViewInit, OnInit {
     this.roomService.getRoom(this._id).subscribe((room) => {
       this.room = room;
     });
-    this.roomService.getAllPaths().subscribe((response) => {
+    this.roomService.getAllPaths(this._id).subscribe((response) => {
       this.paths = response;
       console.log(this.paths);
       this.loading = false;
@@ -62,9 +63,11 @@ export class RoomComponent implements AfterViewInit, OnInit {
         difficulty: this.pathFormGroup.controls['difficultyCtrl'].value,
         color: this.pathFormGroup.controls['colorCtrl'].value,
         free: true,
-        grips: []
+        grips: [],
+        name: this.pathFormGroup.controls['nameCtrl'].value,
+        best: {}
       };
-      this.roomService.postPath(path).subscribe((response) => {
+      this.roomService.postPath(this._id, path).subscribe((response) => {
         this.paths.push(response);
         this.snackBar.open('Path created!', undefined, {
           duration: 2000
