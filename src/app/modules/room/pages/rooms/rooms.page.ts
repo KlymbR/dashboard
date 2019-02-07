@@ -53,6 +53,7 @@ export class RoomsComponent implements AfterViewInit {
         title: this.roomFormGroup.controls['titleCtrl'].value,
         latitude: this.roomFormGroup.controls['latitudeCtrl'].value,
         longitude: this.roomFormGroup.controls['longitudeCtrl'].value,
+        paths: [],
       };
       this.roomService.postRoom(room).subscribe((response) => {
         this.rooms.push(response);
