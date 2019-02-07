@@ -6,3 +6,52 @@ mat-progress-bar.page-load(*ngIf='loading' mode='indeterminate')
             span: i.fas.fa-home.fa-3x
             span.fill
         h1 {{ room.title }}
+    .col-lg-3.col-md-4.col-sm-6(*ngIf='admin'): mat-card: mat-card-content
+        .flex
+            i.fas.fa-allergies.fa-3x
+        h1 New
+        form('(submit)'='onSubmit()' '[formGroup]'='roomFormGroup')
+            mat-form-field(appearance='outline')
+                mat-label Name
+                input(
+                    type='text'
+                    matInput
+                    placeholder=''
+                    name='title'
+                    formControlName='titleCtrl'
+                    required
+                )
+                i.fas.fa-key.fa-2x(matSuffix)
+                mat-error(
+                    *ngIf="roomFormGroup.controls['titleCtrl'].hasError('required')"
+                ) You must enter a name
+            mat-form-field(appearance='outline')
+                mat-label Latitude
+                input(
+                    type='text'
+                    matInput
+                    placeholder=''
+                    name='latitude'
+                    formControlName='latitudeCtrl'
+                    required
+                )
+                i.fas.fa-key.fa-2x(matSuffix)
+                mat-error(
+                    *ngIf="roomFormGroup.controls['latitudeCtrl'].hasError('required')"
+                ) You must enter a latitude
+            mat-form-field(appearance='outline')
+                mat-label Longitude
+                input(
+                    type='text'
+                    matInput
+                    placeholder=''
+                    name='longitude'
+                    formControlName='longitudeCtrl'
+                    required
+                )
+                i.fas.fa-key.fa-2x(matSuffix)
+                mat-error(
+                    *ngIf="roomFormGroup.controls['longitudeCtrl'].hasError('required')"
+                ) You must enter a longitude
+            .flex
+            button(type='submit' mat-stroked-button color='primary') Create

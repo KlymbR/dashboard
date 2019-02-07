@@ -16,6 +16,10 @@ export class RoomService {
     return this.http.get(this.url + 'rooms/' + roomid,
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
   }
+  postRoom(room: any): Observable<any> {
+    return this.http.post(this.url + 'rooms', room,
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });
+  }
   getAllRooms(): Observable<any> {
     return this.http.get(this.url + 'rooms',
       { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': `bearer ${this.token}` }) });

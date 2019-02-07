@@ -44,7 +44,6 @@ export class RoomComponent implements AfterViewInit, OnInit {
     });
     this.roomService.getAllPaths(this._id).subscribe((response) => {
       this.paths = response;
-      console.log(this.paths);
       this.loading = false;
     }, (error) => {
       this.snackBar.open(error.statusText, undefined, {
