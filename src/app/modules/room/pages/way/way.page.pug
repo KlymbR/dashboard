@@ -24,8 +24,8 @@ ng-container(*ngIf='way')
             h1 N° {{ grip.id }}
             p Data: {{ grip.data }}
             +flex
-                i.fas.fa-toggle-on.fa-2x(*ngIf='grip.grip_on')
-                i.fas.fa-toggle-off.fa-2x(*ngIf='!grip.grip_on')
+                i.fas.fa-toggle-on.fa-2x(*ngIf='grip.on')
+                i.fas.fa-toggle-off.fa-2x(*ngIf='!grip.on')
         .col-lg-2.col-md-4.col-sm-6(*ngIf="admin"): mat-card: mat-card-content
             +flex
                 i.fas.fa-hand-rock.fa-3x
